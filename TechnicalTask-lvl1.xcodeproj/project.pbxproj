@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */; };
+		CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */; };
+		CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
@@ -29,6 +32,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */,
+				CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */,
+				CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +110,11 @@
 			dependencies = (
 			);
 			name = "TechnicalTask-lvl1";
+			packageProductDependencies = (
+				CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */,
+				CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */,
+				CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */,
+			);
 			productName = "Technical task - lvl1";
 			productReference = CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */;
 			productType = "com.apple.product-type.application";
@@ -132,6 +143,9 @@
 				Base,
 			);
 			mainGroup = CE9F09082CEF646D00CFA6B5;
+			packageReferences = (
+				CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = CE9F09122CEF646D00CFA6B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -311,6 +325,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,6 +357,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,6 +397,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE9F09092CEF646D00CFA6B5 /* Project object */;
 }
