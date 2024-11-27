@@ -13,10 +13,12 @@ protocol AllUsersViewModelProtocol {
     var error: Observable<Error> { get }
     
     func fetchUsers()
+    func addLocalUser(_ user: UserModel)
 }
 
 class AllUsersViewModel: AllUsersViewModelProtocol {
-    private let networkService: NetworkService
+    private let networkService: NetworkServiceProtocol
+    private let userRepository: UserRepositoryProtocol
     private let disposeBag = DisposeBag()
     
     var users: Observable<[UserModel]> {
@@ -30,17 +32,38 @@ class AllUsersViewModel: AllUsersViewModelProtocol {
     private let _users = PublishSubject<[UserModel]>()
     private let _error = PublishSubject<Error>()
     
-    init(networkService: NetworkService) {
+    init(networkService: NetworkServiceProtocol, userRepository: UserRepositoryProtocol) {
         self.networkService = networkService
+        self.userRepository = userRepository
+        
+        loadLocalUsers()
     }
     
     func fetchUsers() {
         networkService.fetchUsers()
             .subscribe(onNext: { [weak self] users in
-                self?._users.onNext(users)
+                self?.userRepository.update(with: users)
+                self?.loadLocalUsers()
             }, onError: { [weak self] error in
                 self?._error.onNext(error)
             })
             .disposed(by: disposeBag)
     }
+    
+    // TODO: - Call this method after creating new user
+    func addLocalUser(_ user: UserModel) {
+        userRepository.addLocalUser(user)
+        loadLocalUsers()
+    }
+}
+
+private extension AllUsersViewModel {
+    func loadLocalUsers() {
+        let localUsers = userRepository.fetchUsers()
+        let sortedUsers = localUsers.sorted {
+            $0.name.localizedCompare($1.name) == .orderedAscending
+        }
+        _users.onNext(sortedUsers)
+    }
+    
 }
