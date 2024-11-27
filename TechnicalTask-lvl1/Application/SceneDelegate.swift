@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let allUsersViewModel = AllUsersViewModel(networkService: NetworkService())
+        let allUsersViewModel = AllUsersViewModel(networkService: NetworkService(), userRepository: UserRepository())
         let allUsersViewController = AllUsersViewController(viewModel: allUsersViewModel)
         window.rootViewController = UINavigationController(rootViewController: allUsersViewController)
         window.makeKeyAndVisible()

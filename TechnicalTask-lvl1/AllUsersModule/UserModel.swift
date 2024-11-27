@@ -19,4 +19,11 @@ struct UserModel: Codable {
         case name
         case address
     }
+    
+    init(userEntity: UserEntity) {
+        id = Int(userEntity.id)
+        name = userEntity.name ?? ""
+        email = userEntity.email ?? ""
+        address = Address(city: userEntity.city ?? "", street: userEntity.street ?? "")
+    }
 }
