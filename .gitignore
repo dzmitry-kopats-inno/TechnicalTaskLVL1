@@ -3,6 +3,8 @@
 # User-specific files
 *.xcuserstate
 *.xcworkspace
+*.xcbkptlist
+*.xcuserstate
 .idea/
 .DS_Store
 .vscode/

@@ -19,10 +19,26 @@ enum CustomTextFieldType {
 }
 
 final class CustomTextFieldView: UIView {
-    private let label = UILabel()
-    private let textField = UITextField()
+    // MARK: - Properties
     private let type: CustomTextFieldType
+    // MARK: - GUI Properties
+    private let label: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 16, weight: .medium)
+        return label
+    }()
+    
+    private let textField: UITextField = {
+        let textField = UITextField()
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderWidth = 1.0
+        textField.layer.cornerRadius = 8.0
+        textField.font = .systemFont(ofSize: 14)
+        textField.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        return textField
+    }()
 
+    // MARK: - Life cycle
     init(labelText: String, type: CustomTextFieldType = .text) {
         self.type = type
         super.init(frame: .zero)
@@ -33,17 +49,21 @@ final class CustomTextFieldView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    private func setupUI(labelText: String) {
+    var text: String? {
+        get { textField.text }
+        set { textField.text = newValue }
+    }
+
+    func setBorderColor(_ color: UIColor) {
+        textField.layer.borderColor = color.cgColor
+    }
+}
+
+// MARK: - Private methods
+private extension CustomTextFieldView {
+    func setupUI(labelText: String) {
         label.text = labelText
-        label.font = .systemFont(ofSize: 16, weight: .medium)
 
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.layer.borderWidth = 1.0
-        textField.layer.cornerRadius = 8.0
-        textField.font = .systemFont(ofSize: 14)
-        textField.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
-
-        // Настройка клавиатуры для email
         if type == .email {
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
@@ -61,14 +81,5 @@ final class CustomTextFieldView: UIView {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-    }
-
-    var text: String? {
-        get { textField.text }
-        set { textField.text = newValue }
-    }
-
-    func setBorderColor(_ color: UIColor) {
-        textField.layer.borderColor = color.cgColor
     }
 }
