@@ -53,7 +53,7 @@ private extension UserRepository {
     
     func createUserEntity(_ user: UserModel, isLocal: Bool){
         let newUser = UserEntity(context: context)
-        newUser.id = Int16(user.id)
+        newUser.id = Int32(user.id)
         newUser.name = user.name
         newUser.email = user.email
         newUser.city = user.address?.city
