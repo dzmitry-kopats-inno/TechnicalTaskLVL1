@@ -21,7 +21,7 @@ private enum Constants {
     static let cornerRadius: CGFloat = 8.0
 }
 
-final class AllUsersViewController: UserViewController {
+final class AllUsersViewController: UIViewController {
     // MARK: - Properties
     private let viewModel: AllUsersViewModelProtocol
     private let disposeBag = DisposeBag()
@@ -113,7 +113,16 @@ private extension AllUsersViewController {
         addButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                let userViewController = UserViewController()
+                let viewModel = AddUserViewModel(userRepository: viewModel.getUserRepository())
+                let userViewController = AddUserViewController(viewModel: viewModel)
+                
+                viewModel.success
+                    .observe(on: MainScheduler.instance)
+                    .subscribe(onNext: { [weak self] in
+                        self?.viewModel.fetchUsers()
+                    })
+                    .disposed(by: self.disposeBag)
+                
                 navigationController?.pushViewController(userViewController, animated: true)
             })
             .disposed(by: disposeBag)
@@ -129,7 +138,7 @@ private extension AllUsersViewController {
 extension AllUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = .systemGray6
+        headerView.backgroundColor = .systemGray
         
         let titleLabel = UILabel()
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
