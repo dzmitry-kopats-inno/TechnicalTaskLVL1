@@ -1,0 +1,41 @@
+# Xcode
+#
+# User-specific files
+*.xcuserstate
+*.xcworkspace
+.idea/
+.DS_Store
+.vscode/
+
+# Xcode build data
+build/
+DerivedData/
+
+# CocoaPods
+#
+# Pods directory
+Pods/
+
+# Swift Package Manager
+#
+# Dependencies directory
+.swiftpm/
+
+# Xcode's Auto Generated files
+xcuserdata/
+
+# Logs
+*.log
+
+# User-specific files
+*.swp
+*~
+
+# Archive files
+*.xcarchive
+
+# Swift Package Manager
+Package.resolved
+
+# Temporary files
+*.tmp
