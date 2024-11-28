@@ -16,7 +16,7 @@ final class CoreDataStack {
     private init() {}
     
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "UserModel")
+        let container = NSPersistentContainer(name: Constants.modelName)
         container.loadPersistentStores { _, error in
             if let error {
                 fatalError("Failed to load Core Data with \(error)")
