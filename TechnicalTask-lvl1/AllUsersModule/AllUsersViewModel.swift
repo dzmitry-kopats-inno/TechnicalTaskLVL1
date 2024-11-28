@@ -5,8 +5,8 @@
 //  Created by Dzmitry Kopats on 25/11/2024.
 //
 
+import Foundation
 import RxSwift
-import RxCocoa
 
 protocol AllUsersViewModelProtocol {
     var users: Observable<[UserModel]> { get }
@@ -14,6 +14,7 @@ protocol AllUsersViewModelProtocol {
     
     func fetchUsers()
     func addLocalUser(_ user: UserModel)
+    func getUserRepository() -> UserRepositoryProtocol
 }
 
 class AllUsersViewModel: AllUsersViewModelProtocol {
@@ -37,6 +38,10 @@ class AllUsersViewModel: AllUsersViewModelProtocol {
         self.userRepository = userRepository
         
         loadLocalUsers()
+    }
+    
+    func getUserRepository() -> UserRepositoryProtocol {
+        userRepository
     }
     
     func fetchUsers() {
