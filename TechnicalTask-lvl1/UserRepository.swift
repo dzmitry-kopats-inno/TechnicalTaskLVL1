@@ -6,11 +6,13 @@
 //
 
 import CoreData
+import RxSwift
 
 protocol UserRepositoryProtocol {
     func fetchUsers() -> [UserModel]
     func update(with users: [UserModel])
     func addLocalUser(_ user: UserModel)
+    func deleteUser(_ user: UserModel) -> Completable
 }
 
 final class UserRepository: UserRepositoryProtocol {
@@ -42,6 +44,34 @@ final class UserRepository: UserRepositoryProtocol {
     func addLocalUser(_ user: UserModel) {
         createUserEntity(user, isLocal: true)
         saveContext()
+    }
+    
+    func deleteUser(_ user: UserModel) -> Completable {
+        return Completable.create { [weak self] completable in
+            guard let self else {
+                completable(.error(NSError(domain: "Repository deallocated", code: -1, userInfo: nil)))
+                return Disposables.create()
+            }
+            
+            let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %d", user.id)
+            
+            do {
+                let fetchedUsers = try self.context.fetch(fetchRequest)
+                
+                if let userEntity = fetchedUsers.first {
+                    self.context.delete(userEntity)
+                    self.saveContext()
+                    completable(.completed)
+                } else {
+                    completable(.error(NSError(domain: "User not found", code: 404, userInfo: nil)))
+                }
+            } catch {
+                completable(.error(error))
+            }
+            
+            return Disposables.create()
+        }
     }
 }
 

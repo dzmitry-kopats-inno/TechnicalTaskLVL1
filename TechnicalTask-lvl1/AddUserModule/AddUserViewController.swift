@@ -130,14 +130,16 @@ private extension AddUserViewController {
         viewModel.error
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] errorMessage in
-                self?.showError(errorMessage)
+                guard let self else { return }
+                showError(errorMessage)
             })
             .disposed(by: disposeBag)
         
         viewModel.success
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                guard let self else { return }
+                navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
     }

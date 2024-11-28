@@ -13,8 +13,8 @@ protocol AllUsersViewModelProtocol {
     var error: Observable<Error> { get }
     
     func fetchUsers()
-    func addLocalUser(_ user: UserModel)
     func getUserRepository() -> UserRepositoryProtocol
+    func delete(user: UserModel) -> Completable
 }
 
 class AllUsersViewModel: AllUsersViewModelProtocol {
@@ -29,8 +29,7 @@ class AllUsersViewModel: AllUsersViewModelProtocol {
     var error: Observable<Error> {
         return _error.asObservable()
     }
-    
-    private let _users = PublishSubject<[UserModel]>()
+    private let _users = BehaviorSubject<[UserModel]>(value: [])
     private let _error = PublishSubject<Error>()
     
     init(networkService: NetworkServiceProtocol, userRepository: UserRepositoryProtocol) {
@@ -47,18 +46,18 @@ class AllUsersViewModel: AllUsersViewModelProtocol {
     func fetchUsers() {
         networkService.fetchUsers()
             .subscribe(onNext: { [weak self] users in
-                self?.userRepository.update(with: users)
-                self?.loadLocalUsers()
+                guard let self else { return }
+                userRepository.update(with: users)
+                loadLocalUsers()
             }, onError: { [weak self] error in
-                self?._error.onNext(error)
+                guard let self else { return }
+                _error.onNext(error)
             })
             .disposed(by: disposeBag)
     }
     
-    // TODO: - Call this method after creating new user
-    func addLocalUser(_ user: UserModel) {
-        userRepository.addLocalUser(user)
-        loadLocalUsers()
+    func delete(user: UserModel) -> Completable {
+        userRepository.deleteUser(user)
     }
 }
 
