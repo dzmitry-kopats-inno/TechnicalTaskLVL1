@@ -68,6 +68,34 @@ final class AllUsersViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDelegate
+extension AllUsersViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = .systemGray
+        
+        let titleLabel = UILabel()
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.text = Constants.headerTitle
+        titleLabel.font = Constants.headerFont
+        titleLabel.textColor = .black
+        
+        headerView.addSubview(titleLabel)
+        
+        NSLayoutConstraint.activate([
+            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: Constants.commonInset * 2),
+            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -Constants.commonInset * 2),
+            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: Constants.commonInset),
+            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -Constants.commonInset)
+        ])
+        
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
+}
+
+// MARK: Private methods
 private extension AllUsersViewController {
     func setupUI() {
         view.backgroundColor = .white
@@ -92,6 +120,13 @@ private extension AllUsersViewController {
     
     func setupTableView() {
         tableView.delegate = self
+        
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] indexPath in
+                guard let self else { return }
+                self.confirmDeletion(at: indexPath)
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindViewModel() {
@@ -119,11 +154,48 @@ private extension AllUsersViewController {
                 viewModel.success
                     .observe(on: MainScheduler.instance)
                     .subscribe(onNext: { [weak self] in
-                        self?.viewModel.fetchUsers()
+                        guard let self else { return }
+                        self.viewModel.fetchUsers()
                     })
                     .disposed(by: self.disposeBag)
                 
                 navigationController?.pushViewController(userViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func confirmDeletion(at indexPath: IndexPath) {
+        let alert = UIAlertController(
+            title: "Delete User",
+            message: "Are you sure you want to delete this user?",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { [weak self] _ in
+            guard let self else { return }
+            deleteUser(at: indexPath)
+        }))
+        present(alert, animated: true)
+    }
+    
+    func deleteUser(at indexPath: IndexPath) {
+        viewModel.users
+            .take(1)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] users in
+                guard let self, indexPath.row < users.count else { return }
+                let user = users[indexPath.row]
+                
+                self.viewModel.delete(user: user)
+                    .observe(on: MainScheduler.instance)
+                    .subscribe(onCompleted: {
+                        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                            self.viewModel.fetchUsers()
+                        })
+                    }, onError: { error in
+                        self.showError(error)
+                    })
+                    .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
     }
@@ -133,30 +205,4 @@ private extension AllUsersViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)
     }
-}
-
-extension AllUsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .systemGray
-        
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = Constants.headerTitle
-        titleLabel.font = Constants.headerFont
-        titleLabel.textColor = .black
-        
-        headerView.addSubview(titleLabel)
-        
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: Constants.commonInset * 2),
-            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -Constants.commonInset * 2),
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: Constants.commonInset),
-            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -Constants.commonInset)
-        ])
-        
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
 }

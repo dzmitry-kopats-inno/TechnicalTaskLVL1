@@ -65,7 +65,7 @@ class UserTableViewCell: UITableViewCell, Reusable {
     // MARK: - Life cycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        selectionStyle = .none
         setupUI()
     }
     
@@ -77,7 +77,20 @@ class UserTableViewCell: UITableViewCell, Reusable {
     func configure(with user: UserModel) {
         userNameLabel.text = user.name
         userEmailLabel.text = user.email
-        cityStreetLabel.text = "\(user.address?.city ?? "N/A"),\n\(user.address?.street ?? "N/A")"
+        
+        var addressText = ""
+        if let city = user.address?.city, !city.isEmpty {
+            addressText += city
+        }
+        
+        if let street = user.address?.street, !street.isEmpty {
+            if !addressText.isEmpty {
+                addressText += ",\n"
+            }
+            addressText += street
+        }
+        
+        cityStreetLabel.text = addressText.isEmpty ? "N/A" : addressText
     }
 }
 
