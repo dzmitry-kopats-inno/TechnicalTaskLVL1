@@ -60,7 +60,6 @@ final class AllUsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "All users"
         setupUI()
         setupTableView()
         bindViewModel()
@@ -98,6 +97,7 @@ extension AllUsersViewController: UITableViewDelegate {
 // MARK: Private methods
 private extension AllUsersViewController {
     func setupUI() {
+        title = "All users"
         view.backgroundColor = .white
         
         view.addSubviews([
@@ -105,6 +105,10 @@ private extension AllUsersViewController {
             addButton
         ])
         
+        setupLayout()
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),

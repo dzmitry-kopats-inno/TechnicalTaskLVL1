@@ -39,6 +39,7 @@ final class AddUserViewController: UIViewController {
     
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Constants.saveButtonTitle, for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
@@ -69,12 +70,6 @@ private extension AddUserViewController {
     func setupUI() {
         view.backgroundColor = .white
         title = Constants.screenTitle
-
-        saveButton.setTitle(Constants.saveButtonTitle, for: .normal)
-        saveButton.backgroundColor = .systemBlue
-        saveButton.setTitleColor(.white, for: .normal)
-        saveButton.layer.cornerRadius = Constants.cornerRadius
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
 
         let stackView = UIStackView(arrangedSubviews: [
             instructionLabel,
