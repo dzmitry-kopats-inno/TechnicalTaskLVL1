@@ -62,6 +62,7 @@ final class AddUserViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
+        setupDismissKeyboardGesture()
     }
 }
 
@@ -155,5 +156,15 @@ private extension AddUserViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
