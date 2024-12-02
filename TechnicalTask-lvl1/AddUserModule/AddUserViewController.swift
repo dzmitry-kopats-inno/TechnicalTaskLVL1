@@ -108,18 +108,17 @@ private extension AddUserViewController {
                 let isNameValid = self.validateField(self.nameField)
                 let isEmailValid = self.validateField(self.emailField)
                 
-                guard isNameValid, isEmailValid else {
+                guard isNameValid, isEmailValid,
+                      let name = self.nameField.text,
+                      let email = self.emailField.text else {
                     self.showError("Please fill in all required fields.")
                     return
                 }
                 
-                let name = self.nameField.text
-                let email = self.emailField.text
                 let city = self.cityField.text
                 let street = self.streetField.text
                 
-                self.viewModel.addUser(name: name!, email: email!, city: city, street: street)
-                
+                self.viewModel.addUser(name: name, email: email, city: city, street: street)
             })
             .disposed(by: disposeBag)
         
