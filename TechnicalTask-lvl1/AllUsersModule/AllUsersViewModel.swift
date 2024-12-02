@@ -7,6 +7,7 @@
 
 import Foundation
 import RxSwift
+import Network
 
 protocol AllUsersViewModelProtocol {
     var users: Observable<[UserModel]> { get }
@@ -18,9 +19,12 @@ protocol AllUsersViewModelProtocol {
 }
 
 final class AllUsersViewModel: AllUsersViewModelProtocol {
+    // MARK: - Properties
     private let networkService: NetworkServiceProtocol
     private let userRepository: UserRepositoryProtocol
     private let disposeBag = DisposeBag()
+    private let monitor = NWPathMonitor()
+    private let queue = DispatchQueue(label: "NetworkMonitorQueue")
     
     var users: Observable<[UserModel]> {
         return _users.asObservable()
@@ -32,13 +36,16 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     private let _users = BehaviorSubject<[UserModel]>(value: [])
     private let _error = PublishSubject<Error>()
     
+    // MARK: - Life cycle
     init(networkService: NetworkServiceProtocol, userRepository: UserRepositoryProtocol) {
         self.networkService = networkService
         self.userRepository = userRepository
         
+        observeNetworkChanges()
         loadLocalUsers()
     }
     
+    // MARK: - Methods
     func getUserRepository() -> UserRepositoryProtocol {
         userRepository
     }
@@ -61,6 +68,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     }
 }
 
+// MARK: - Private methods
 private extension AllUsersViewModel {
     func loadLocalUsers() {
         let localUsers = userRepository.fetchUsers()
@@ -70,4 +78,15 @@ private extension AllUsersViewModel {
         _users.onNext(sortedUsers)
     }
     
+    func observeNetworkChanges() {
+        monitor.pathUpdateHandler = { [weak self] path in
+            guard let self else { return }
+            if path.status == .satisfied {
+                self.fetchUsers()
+            } else {
+                self.loadLocalUsers()
+            }
+        }
+        monitor.start(queue: queue)
+    }
 }
