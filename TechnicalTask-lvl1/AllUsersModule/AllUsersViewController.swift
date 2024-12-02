@@ -165,15 +165,13 @@ private extension AllUsersViewController {
                     .subscribe(onNext: { [weak self] in
                         guard let self else { return }
                         self.viewModel.fetchUsers()
-                            .subscribe(onCompleted: { [weak self] in
-                                self?.refreshControl.endRefreshing()
-                            }, onError: { [weak self] error in
-                                self?.refreshControl.endRefreshing()
-                                self?.showError(error)
+                            .subscribe(onError: { [weak self] error in
+                                guard let self else { return }
+                                showError(error)
                             })
-                            .disposed(by: self.disposeBag)
+                            .disposed(by: disposeBag)
                     })
-                    .disposed(by: self.disposeBag)
+                    .disposed(by: disposeBag)
                 
                 navigationController?.pushViewController(userViewController, animated: true)
             })
@@ -215,7 +213,6 @@ private extension AllUsersViewController {
                 let user = users[indexPath.row]
                 
                 self.viewModel.delete(user: user)
-                    .observe(on: MainScheduler.instance)
                     .subscribe(onCompleted: {
                         UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
                             _ = self.viewModel.fetchUsers()

@@ -13,13 +13,39 @@ protocol NetworkServiceProtocol {
 }
 
 final class NetworkService: NetworkServiceProtocol {
+    // MARK: - Properties
+    private let session: URLSession
+    
+    // MARK: - Life cycle
+    init(timeout: TimeInterval = 5) {
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForRequest = timeout
+        self.session = URLSession(configuration: configuration)
+    }
+    
+    // MARK: - Methods
     func fetchUsers() -> Observable<[UserModel]> {
-        // TODO: - Improve logic
         let url = URL(string: "https://jsonplaceholder.typicode.com/users")!
-        return URLSession.shared.rx.data(request: URLRequest(url: url))
+        return performRequest(url: url)
+    }
+}
+
+// MARK: - Private methods
+private extension NetworkService {
+    func performRequest<T: Decodable>(url: URL, 
+                                      method: String = "GET", 
+                                      body: Data? = nil) -> Observable<T> {
+        var request = URLRequest(url: url)
+        request.httpMethod = method
+        request.httpBody = body
+        
+        return session.rx.data(request: request)
             .map { data in
-                let users = try? JSONDecoder().decode([UserModel].self, from: data)
-                return users ?? []
+                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                return decodedResponse
+            }
+            .catch { error in
+                return Observable.error(error)
             }
     }
 }

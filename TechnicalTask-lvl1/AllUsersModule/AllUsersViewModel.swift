@@ -42,7 +42,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         self.userRepository = userRepository
         
         observeNetworkChanges()
-        loadLocalUsers()
+        loadDataAtStart()
     }
     
     // MARK: - Methods
@@ -66,6 +66,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
                 }, onError: { [weak self] error in
                     guard let self else { return }
                     _error.onNext(error)
+                    loadLocalUsers()
                     completable(.error(error))
                 })
                 .disposed(by: disposeBag)
@@ -89,6 +90,12 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
 
 // MARK: - Private methods
 private extension AllUsersViewModel {
+    func loadDataAtStart() {
+        fetchUsers()
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
+    
     func loadLocalUsers() {
         let localUsers = userRepository.fetchUsers()
         let sortedUsers = localUsers.sorted {
