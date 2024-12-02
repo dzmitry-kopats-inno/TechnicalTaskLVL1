@@ -47,6 +47,8 @@ final class AllUsersViewController: UIViewController {
         return button
     }()
     
+    private let refreshControl = UIRefreshControl()
+    
     // MARK: Life cycle
     init(viewModel: AllUsersViewModelProtocol) {
         self.viewModel = viewModel
@@ -63,7 +65,7 @@ final class AllUsersViewController: UIViewController {
         setupUI()
         setupTableView()
         bindViewModel()
-        viewModel.fetchUsers()
+        _ = viewModel.fetchUsers()
     }
 }
 
@@ -131,6 +133,9 @@ private extension AllUsersViewController {
                 self.confirmDeletion(at: indexPath)
             })
             .disposed(by: disposeBag)
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
     }
     
     func bindViewModel() {
@@ -160,10 +165,29 @@ private extension AllUsersViewController {
                     .subscribe(onNext: { [weak self] in
                         guard let self else { return }
                         self.viewModel.fetchUsers()
+                            .subscribe(onCompleted: { [weak self] in
+                                self?.refreshControl.endRefreshing()
+                            }, onError: { [weak self] error in
+                                self?.refreshControl.endRefreshing()
+                                self?.showError(error)
+                            })
+                            .disposed(by: self.disposeBag)
                     })
                     .disposed(by: self.disposeBag)
                 
                 navigationController?.pushViewController(userViewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    @objc func handleRefresh() {
+        viewModel.fetchUsers()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onCompleted: { [weak self] in
+                self?.refreshControl.endRefreshing()
+            }, onError: { [weak self] error in
+                self?.refreshControl.endRefreshing()
+                self?.showError(error)
             })
             .disposed(by: disposeBag)
     }
@@ -194,7 +218,7 @@ private extension AllUsersViewController {
                     .observe(on: MainScheduler.instance)
                     .subscribe(onCompleted: {
                         UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
-                            self.viewModel.fetchUsers()
+                            _ = self.viewModel.fetchUsers()
                         })
                     }, onError: { error in
                         self.showError(error)

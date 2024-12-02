@@ -13,7 +13,7 @@ protocol AllUsersViewModelProtocol {
     var users: Observable<[UserModel]> { get }
     var error: Observable<Error> { get }
     
-    func fetchUsers()
+    func fetchUsers() -> Completable
     func getUserRepository() -> UserRepositoryProtocol
     func delete(user: UserModel) -> Completable
 }
@@ -50,21 +50,40 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         userRepository
     }
     
-    func fetchUsers() {
-        networkService.fetchUsers()
-            .subscribe(onNext: { [weak self] users in
-                guard let self else { return }
-                userRepository.update(with: users)
-                loadLocalUsers()
-            }, onError: { [weak self] error in
-                guard let self else { return }
-                _error.onNext(error)
-            })
-            .disposed(by: disposeBag)
+    func fetchUsers() -> Completable {
+        return Completable.create { [weak self] completable in
+            guard let self else {
+                completable(.error(NSError(domain: "ViewModel deallocated", code: -1, userInfo: nil)))
+                return Disposables.create()
+            }
+            
+            networkService.fetchUsers()
+                .subscribe(onNext: { [weak self] users in
+                    guard let self else { return }
+                    userRepository.update(with: users)
+                    loadLocalUsers()
+                    completable(.completed)
+                }, onError: { [weak self] error in
+                    guard let self else { return }
+                    _error.onNext(error)
+                    completable(.error(error))
+                })
+                .disposed(by: disposeBag)
+            
+            return Disposables.create()
+        }
     }
     
     func delete(user: UserModel) -> Completable {
         userRepository.deleteUser(user)
+            .do(onCompleted: { [weak self] in
+                guard let self else { return }
+                var currentUsers = try? self._users.value()
+                currentUsers?.removeAll { $0.email == user.email }
+                if let updatedUsers = currentUsers {
+                    self._users.onNext(updatedUsers)
+                }
+            })
     }
 }
 
@@ -82,7 +101,7 @@ private extension AllUsersViewModel {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self else { return }
             if path.status == .satisfied {
-                self.fetchUsers()
+                _ = self.fetchUsers()
             } else {
                 self.loadLocalUsers()
             }
