@@ -17,7 +17,7 @@ protocol AllUsersViewModelProtocol {
     func delete(user: UserModel) -> Completable
 }
 
-class AllUsersViewModel: AllUsersViewModelProtocol {
+final class AllUsersViewModel: AllUsersViewModelProtocol {
     private let networkService: NetworkServiceProtocol
     private let userRepository: UserRepositoryProtocol
     private let disposeBag = DisposeBag()

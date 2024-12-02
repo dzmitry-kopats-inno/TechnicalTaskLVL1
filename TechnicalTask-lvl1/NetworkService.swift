@@ -12,7 +12,7 @@ protocol NetworkServiceProtocol {
     func fetchUsers() -> Observable<[UserModel]>
 }
 
-class NetworkService: NetworkServiceProtocol {
+final class NetworkService: NetworkServiceProtocol {
     func fetchUsers() -> Observable<[UserModel]> {
         // TODO: - Improve logic
         let url = URL(string: "https://jsonplaceholder.typicode.com/users")!
