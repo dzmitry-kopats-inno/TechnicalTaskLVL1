@@ -35,8 +35,8 @@ final class UserRepository: UserRepositoryProtocol {
     
     func update(with users: [UserModel]) {
         let localUsers = fetchUsers()
-        let localUserIds = Set(localUsers.map { $0.id })
-        let newUsers = users.filter { !localUserIds.contains($0.id) }
+        let localUserEmails = Set(localUsers.map { $0.email })
+        let newUsers = users.filter { !localUserEmails.contains($0.email) }
         newUsers.forEach { addUserFromNetwork($0) }
         saveContext()
     }
@@ -54,7 +54,7 @@ final class UserRepository: UserRepositoryProtocol {
             }
             
             let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "id == %d", user.id)
+            fetchRequest.predicate = NSPredicate(format: "email ==[c] %@", user.email)
             
             do {
                 let fetchedUsers = try self.context.fetch(fetchRequest)
@@ -83,7 +83,6 @@ private extension UserRepository {
     
     func createUserEntity(_ user: UserModel, isLocal: Bool){
         let newUser = UserEntity(context: context)
-        newUser.id = Int32(user.id)
         newUser.name = user.name
         newUser.email = user.email
         newUser.city = user.address?.city
