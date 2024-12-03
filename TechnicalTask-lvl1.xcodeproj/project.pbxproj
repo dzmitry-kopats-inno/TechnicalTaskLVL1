@@ -7,18 +7,51 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */; };
+		CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */; };
+		CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */; };
+		CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */; };
+		CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */; };
+		CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */; };
+		CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */; };
+		CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */; };
+		CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */; };
+		CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */; };
+		CE2A5AAE2CF4EED200CEDCE1 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */; };
+		CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAF2CF5FE0100CEDCE1 /* UserModel.xcdatamodeld */; };
+		CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */; };
+		CE2A5AB52CF6001900CEDCE1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */; };
+		CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ABD2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift */; };
+		CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ABE2CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift */; };
+		CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */; };
+		CE2A5AC42CF793FD00CEDCE1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
-		CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */; };
+		CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */; };
 		CE9F091E2CEF647100CFA6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */; };
 		CE9F09212CEF647100CFA6B5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9F09202CEF647100CFA6B5 /* Base */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewController.swift; sourceTree = "<group>"; };
+		CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
+		CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
+		CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewModel.swift; sourceTree = "<group>"; };
+		CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		CE2A5AB02CF5FE0100CEDCE1 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
+		CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CE2A5ABD2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE2A5ABE2CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewModel.swift; sourceTree = "<group>"; };
+		CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewController.swift; sourceTree = "<group>"; };
 		CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9F09202CEF647100CFA6B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9F09222CEF647100CFA6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -29,12 +62,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */,
+				CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */,
+				CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE2A5AA02CF4CDAA00CEDCE1 /* AllUsersModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */,
+				CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */,
+				CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */,
+				CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */,
+				CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */,
+			);
+			path = AllUsersModule;
+			sourceTree = "<group>";
+		};
+		CE2A5AB62CF6086600CEDCE1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5ABD2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift */,
+				CE2A5ABE2CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift */,
+				CE2A5AAF2CF5FE0100CEDCE1 /* UserModel.xcdatamodeld */,
+				CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		CE9F09082CEF646D00CFA6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -54,8 +113,14 @@
 		CE9F09132CEF646D00CFA6B5 /* TechnicalTask-lvl1 */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5AB62CF6086600CEDCE1 /* CoreData */,
+				CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */,
+				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */,
+				CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */,
+				CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */,
 				CE9F09292CEF659F00CFA6B5 /* Application */,
-				CE9F092A2CEF65CA00CFA6B5 /* UserModule */,
+				CE2A5AA02CF4CDAA00CEDCE1 /* AllUsersModule */,
+				CE9F092A2CEF65CA00CFA6B5 /* AddUserModule */,
 				CE9F09282CEF658B00CFA6B5 /* Resources */,
 			);
 			path = "TechnicalTask-lvl1";
@@ -80,12 +145,14 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
-		CE9F092A2CEF65CA00CFA6B5 /* UserModule */ = {
+		CE9F092A2CEF65CA00CFA6B5 /* AddUserModule */ = {
 			isa = PBXGroup;
 			children = (
-				CE9F09182CEF646D00CFA6B5 /* UserViewController.swift */,
+				CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */,
+				CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */,
+				CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */,
 			);
-			path = UserModule;
+			path = AddUserModule;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +171,11 @@
 			dependencies = (
 			);
 			name = "TechnicalTask-lvl1";
+			packageProductDependencies = (
+				CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */,
+				CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */,
+				CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */,
+			);
 			productName = "Technical task - lvl1";
 			productReference = CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */;
 			productType = "com.apple.product-type.application";
@@ -132,6 +204,9 @@
 				Base,
 			);
 			mainGroup = CE9F09082CEF646D00CFA6B5;
+			packageReferences = (
+				CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = CE9F09122CEF646D00CFA6B5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -158,9 +233,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE9F09192CEF646D00CFA6B5 /* UserViewController.swift in Sources */,
+				CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */,
+				CE2A5AAE2CF4EED200CEDCE1 /* UIView+Ex.swift in Sources */,
+				CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */,
+				CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */,
+				CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
+				CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */,
+				CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */,
+				CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */,
+				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkService.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
+				CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */,
+				CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */,
+				CE2A5AB52CF6001900CEDCE1 /* UserRepository.swift in Sources */,
+				CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */,
+				CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */,
+				CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */,
+				CE2A5AC42CF793FD00CEDCE1 /* CustomTextFieldView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,13 +394,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TechnicalTask-lvl1/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -324,7 +415,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -335,13 +426,14 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TechnicalTask-lvl1/Resources/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -355,7 +447,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -381,6 +473,48 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = "RxCocoa-Dynamic";
+		};
+		CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		CE2A5AAF2CF5FE0100CEDCE1 /* UserModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE2A5AB02CF5FE0100CEDCE1 /* UserModel.xcdatamodel */,
+			);
+			currentVersion = CE2A5AB02CF5FE0100CEDCE1 /* UserModel.xcdatamodel */;
+			path = UserModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE9F09092CEF646D00CFA6B5 /* Project object */;
 }
