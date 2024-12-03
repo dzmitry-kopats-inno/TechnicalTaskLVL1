@@ -39,6 +39,7 @@ final class AddUserViewController: UIViewController {
     
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle(Constants.saveButtonTitle, for: .normal)
         button.backgroundColor = .systemBlue
         button.setTitleColor(.white, for: .normal)
@@ -61,6 +62,7 @@ final class AddUserViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         bindViewModel()
+        setupDismissKeyboardGesture()
     }
 }
 
@@ -69,12 +71,6 @@ private extension AddUserViewController {
     func setupUI() {
         view.backgroundColor = .white
         title = Constants.screenTitle
-
-        saveButton.setTitle(Constants.saveButtonTitle, for: .normal)
-        saveButton.backgroundColor = .systemBlue
-        saveButton.setTitleColor(.white, for: .normal)
-        saveButton.layer.cornerRadius = Constants.cornerRadius
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
 
         let stackView = UIStackView(arrangedSubviews: [
             instructionLabel,
@@ -112,18 +108,17 @@ private extension AddUserViewController {
                 let isNameValid = self.validateField(self.nameField)
                 let isEmailValid = self.validateField(self.emailField)
                 
-                guard isNameValid, isEmailValid else {
+                guard isNameValid, isEmailValid,
+                      let name = self.nameField.text,
+                      let email = self.emailField.text else {
                     self.showError("Please fill in all required fields.")
                     return
                 }
                 
-                let name = self.nameField.text
-                let email = self.emailField.text
                 let city = self.cityField.text
                 let street = self.streetField.text
                 
-                self.viewModel.addUser(name: name!, email: email!, city: city, street: street)
-                
+                self.viewModel.addUser(name: name, email: email, city: city, street: street)
             })
             .disposed(by: disposeBag)
         
@@ -160,5 +155,15 @@ private extension AddUserViewController {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         present(alert, animated: true)
+    }
+    
+    func setupDismissKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

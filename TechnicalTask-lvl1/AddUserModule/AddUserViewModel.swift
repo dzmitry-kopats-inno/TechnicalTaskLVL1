@@ -54,7 +54,6 @@ final class AddUserViewModel: AddUserViewModelProtocol {
         if isErrorOccurred { return }
         
         let newUser = UserModel(
-            id: Int(Date().timeIntervalSince1970),
             email: email,
             name: name,
             address: Address(city: city ?? "N/A", street: street)

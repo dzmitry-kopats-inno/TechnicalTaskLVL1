@@ -16,7 +16,7 @@ private enum Constants {
     static let commonInset: CGFloat = 8.0
 }
 
-class UserTableViewCell: UITableViewCell, Reusable {
+final class UserTableViewCell: UITableViewCell, Reusable {
     // MARK: - GUI Properties
     private let userNameLabel: UILabel = {
         let label = UILabel()
@@ -105,6 +105,10 @@ private extension UserTableViewCell {
             cityStreetLabel
         ])
         
+        setupConstraints()
+    }
+    
+    func setupConstraints() {
         NSLayoutConstraint.activate([
             containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Constants.commonInset),
             containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.commonInset),
