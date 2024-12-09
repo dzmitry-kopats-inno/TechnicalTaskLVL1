@@ -119,6 +119,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CE2A5AC82D076FF700CEDCE1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		CE9F09082CEF646D00CFA6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +146,7 @@
 		CE9F09132CEF646D00CFA6B5 /* TechnicalTask-lvl1 */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5AC82D076FF700CEDCE1 /* Views */,
 				CE2A5AC72D076EF200CEDCE1 /* Extensions */,
 				CE2A5AC62D076EDD00CEDCE1 /* Services */,
 				CE2A5AC52D076ED100CEDCE1 /* Helpers */,
@@ -174,7 +183,6 @@
 			children = (
 				CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */,
 				CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */,
-				CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */,
 			);
 			path = AddUserModule;
 			sourceTree = "<group>";
