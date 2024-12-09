@@ -49,7 +49,7 @@ final class UserRepositoryImplementation: UserRepository {
     func deleteUser(_ user: UserModel) -> Completable {
         return Completable.create { [weak self] completable in
             guard let self else {
-                completable(.error(NSError(domain: "Repository deallocated", code: -1, userInfo: nil)))
+                completable(.error(AppError(message: "Repository deallocated")))
                 return Disposables.create()
             }
             
@@ -64,7 +64,7 @@ final class UserRepositoryImplementation: UserRepository {
                     self.saveContext()
                     completable(.completed)
                 } else {
-                    completable(.error(NSError(domain: "User not found", code: 404, userInfo: nil)))
+                    completable(.error(AppError(message: "User not found")))
                 }
             } catch {
                 completable(.error(error))

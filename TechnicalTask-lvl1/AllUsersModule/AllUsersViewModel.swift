@@ -53,7 +53,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     func fetchUsers() -> Completable {
         return Completable.create { [weak self] completable in
             guard let self else {
-                completable(.error(NSError(domain: "ViewModel deallocated", code: -1, userInfo: nil)))
+                completable(.error(AppError(message: "ViewModel deallocated")))
                 return Disposables.create()
             }
             
