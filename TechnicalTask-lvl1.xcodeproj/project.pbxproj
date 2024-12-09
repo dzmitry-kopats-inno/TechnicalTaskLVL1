@@ -17,7 +17,7 @@
 		CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */; };
 		CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */; };
 		CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */; };
-		CE2A5AAE2CF4EED200CEDCE1 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */; };
+		CE2A5AAE2CF4EED200CEDCE1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAD2CF4EED200CEDCE1 /* UIView+Extension.swift */; };
 		CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAF2CF5FE0100CEDCE1 /* UserModel.xcdatamodeld */; };
 		CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */; };
 		CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */; };
@@ -40,7 +40,7 @@
 		CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewModel.swift; sourceTree = "<group>"; };
 		CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImplementation.swift; sourceTree = "<group>"; };
 		CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		CE2A5AAD2CF4EED200CEDCE1 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		CE2A5AB02CF5FE0100CEDCE1 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImplementation.swift; sourceTree = "<group>"; };
@@ -94,6 +94,31 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		CE2A5AC52D076ED100CEDCE1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CE2A5AC62D076EDD00CEDCE1 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
+				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		CE2A5AC72D076EF200CEDCE1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AAD2CF4EED200CEDCE1 /* UIView+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		CE9F09082CEF646D00CFA6B5 = {
 			isa = PBXGroup;
 			children = (
@@ -113,11 +138,10 @@
 		CE9F09132CEF646D00CFA6B5 /* TechnicalTask-lvl1 */ = {
 			isa = PBXGroup;
 			children = (
+				CE2A5AC72D076EF200CEDCE1 /* Extensions */,
+				CE2A5AC62D076EDD00CEDCE1 /* Services */,
+				CE2A5AC52D076ED100CEDCE1 /* Helpers */,
 				CE2A5AB62CF6086600CEDCE1 /* CoreData */,
-				CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */,
-				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
-				CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */,
-				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
 				CE9F09292CEF659F00CFA6B5 /* Application */,
 				CE2A5AA02CF4CDAA00CEDCE1 /* AllUsersModule */,
 				CE9F092A2CEF65CA00CFA6B5 /* AddUserModule */,
@@ -234,7 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */,
-				CE2A5AAE2CF4EED200CEDCE1 /* UIView+Ex.swift in Sources */,
+				CE2A5AAE2CF4EED200CEDCE1 /* UIView+Extension.swift in Sources */,
 				CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */,
 				CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */,
 				CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */,
