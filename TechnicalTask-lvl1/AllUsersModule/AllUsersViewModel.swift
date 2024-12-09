@@ -27,14 +27,14 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     private let queue = DispatchQueue(label: "NetworkMonitorQueue")
     
     var users: Observable<[UserModel]> {
-        return _users.asObservable()
+        return usersSubject.asObservable()
     }
     
     var error: Observable<Error> {
-        return _error.asObservable()
+        return errorSubject.asObservable()
     }
-    private let _users = BehaviorSubject<[UserModel]>(value: [])
-    private let _error = PublishSubject<Error>()
+    private let usersSubject = BehaviorSubject<[UserModel]>(value: [])
+    private let errorSubject = PublishSubject<Error>()
     
     // MARK: - Life cycle
     init(networkService: NetworkService, userRepository: UserRepository) {
@@ -65,7 +65,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
                     completable(.completed)
                 }, onError: { [weak self] error in
                     guard let self else { return }
-                    _error.onNext(error)
+                    errorSubject.onNext(error)
                     loadLocalUsers()
                     completable(.error(error))
                 })
@@ -79,10 +79,10 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         userRepository.deleteUser(user)
             .do(onCompleted: { [weak self] in
                 guard let self else { return }
-                var currentUsers = try? self._users.value()
+                var currentUsers = try? self.usersSubject.value()
                 currentUsers?.removeAll { $0.email == user.email }
                 if let updatedUsers = currentUsers {
-                    self._users.onNext(updatedUsers)
+                    self.usersSubject.onNext(updatedUsers)
                 }
             })
     }
@@ -101,7 +101,7 @@ private extension AllUsersViewModel {
         let sortedUsers = localUsers.sorted {
             $0.name.localizedCompare($1.name) == .orderedAscending
         }
-        _users.onNext(sortedUsers)
+        usersSubject.onNext(sortedUsers)
     }
     
     func observeNetworkChanges() {
