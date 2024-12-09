@@ -70,7 +70,9 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     }
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        selectionStyle = .none
+        setupUI()
     }
     
     // MARK: - Methods
