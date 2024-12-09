@@ -27,6 +27,7 @@
 		CE2A5AC42CF793FD00CEDCE1 /* CustomTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */; };
 		CE2A5ACA2D07747A00CEDCE1 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AC92D07747A00CEDCE1 /* UIViewController+Extension.swift */; };
 		CE2A5ACD2D07798400CEDCE1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ACC2D07798400CEDCE1 /* AppError.swift */; };
+		CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */; };
@@ -52,6 +53,7 @@
 		CE2A5AC32CF793FD00CEDCE1 /* CustomTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextFieldView.swift; sourceTree = "<group>"; };
 		CE2A5AC92D07747A00CEDCE1 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		CE2A5ACC2D07798400CEDCE1 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorServiceImplementation.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
 				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
+				CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */,
 				CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */,
 				CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */,
+				CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */,
 				CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */,
 				CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */,
 				CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */,

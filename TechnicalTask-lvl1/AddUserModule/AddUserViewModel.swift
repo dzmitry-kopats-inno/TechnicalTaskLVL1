@@ -22,11 +22,11 @@ final class AddUserViewModel: AddUserViewModelProtocol {
     private let disposeBag = DisposeBag()
 
     var error: Observable<String> {
-        return errorSubject.asObservable()
+        errorSubject.asObservable()
     }
 
     var success: Observable<Void> {
-        return successSubject.asObservable()
+        successSubject.asObservable()
     }
     
     init(userRepository: UserRepository) {

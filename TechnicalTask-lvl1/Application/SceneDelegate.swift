@@ -10,7 +10,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         let networkService = NetworkServiceImplementation(timeout: 3)
-        let allUsersViewModel = AllUsersViewModel(networkService: networkService, userRepository: UserRepositoryImplementation())
+        let networkMonitorService = NetworkMonitorServiceImplementation()
+        let userRepository = UserRepositoryImplementation()
+        let allUsersViewModel = AllUsersViewModel(networkService: networkService,
+                                                  networkMonitorService: networkMonitorService,
+                                                  userRepository: userRepository)
         let allUsersViewController = AllUsersViewController(viewModel: allUsersViewModel)
         window.rootViewController = UINavigationController(rootViewController: allUsersViewController)
         window.makeKeyAndVisible()

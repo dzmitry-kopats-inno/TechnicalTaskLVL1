@@ -7,7 +7,6 @@
 
 import Foundation
 import RxSwift
-import Network
 
 protocol AllUsersViewModelProtocol {
     var users: Observable<[UserModel]> { get }
@@ -21,24 +20,24 @@ protocol AllUsersViewModelProtocol {
 final class AllUsersViewModel: AllUsersViewModelProtocol {
     // MARK: - Properties
     private let networkService: NetworkService
+    private let networkMonitorService: NetworkMonitorService
     private let userRepository: UserRepository
     private let disposeBag = DisposeBag()
-    private let monitor = NWPathMonitor()
-    private let queue = DispatchQueue(label: "NetworkMonitorQueue")
     
     var users: Observable<[UserModel]> {
-        return usersSubject.asObservable()
+        usersSubject.asObservable()
     }
     
     var error: Observable<Error> {
-        return errorSubject.asObservable()
+        errorSubject.asObservable()
     }
     private let usersSubject = BehaviorSubject<[UserModel]>(value: [])
     private let errorSubject = PublishSubject<Error>()
     
     // MARK: - Life cycle
-    init(networkService: NetworkService, userRepository: UserRepository) {
+    init(networkService: NetworkService, networkMonitorService: NetworkMonitorService, userRepository: UserRepository) {
         self.networkService = networkService
+        self.networkMonitorService = networkMonitorService
         self.userRepository = userRepository
         
         observeNetworkChanges()
@@ -105,14 +104,19 @@ private extension AllUsersViewModel {
     }
     
     func observeNetworkChanges() {
-        monitor.pathUpdateHandler = { [weak self] path in
-            guard let self else { return }
-            if path.status == .satisfied {
-                _ = self.fetchUsers()
-            } else {
-                self.loadLocalUsers()
-            }
-        }
-        monitor.start(queue: queue)
+        networkMonitorService.isNetworkAvailable
+            .distinctUntilChanged()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isAvailable in
+                guard let self else { return }
+                if isAvailable {
+                    _ = self.fetchUsers()
+                } else {
+                    self.loadLocalUsers()
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        networkMonitorService.start()
     }
 }
