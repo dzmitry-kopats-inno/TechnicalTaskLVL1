@@ -8,11 +8,11 @@
 import Foundation
 import RxSwift
 
-protocol NetworkServiceProtocol {
+protocol NetworkService {
     func fetchUsers() -> Observable<[UserModel]>
 }
 
-final class NetworkService: NetworkServiceProtocol {
+final class NetworkServiceImplementation: NetworkService {
     // MARK: - Properties
     private let session: URLSession
     
@@ -31,7 +31,7 @@ final class NetworkService: NetworkServiceProtocol {
 }
 
 // MARK: - Private methods
-private extension NetworkService {
+private extension NetworkServiceImplementation {
     func performRequest<T: Decodable>(url: URL, 
                                       method: String = "GET", 
                                       body: Data? = nil) -> Observable<T> {

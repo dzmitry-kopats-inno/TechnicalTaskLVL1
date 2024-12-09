@@ -1,5 +1,5 @@
 //
-//  UserRepository.swift
+//  UserRepositoryImplementation.swift
 //  TechnicalTask-lvl1
 //
 //  Created by Dzmitry Kopats on 26/11/2024.
@@ -8,14 +8,14 @@
 import CoreData
 import RxSwift
 
-protocol UserRepositoryProtocol {
+protocol UserRepository {
     func fetchUsers() -> [UserModel]
     func update(with users: [UserModel])
     func addLocalUser(_ user: UserModel)
     func deleteUser(_ user: UserModel) -> Completable
 }
 
-final class UserRepository: UserRepositoryProtocol {
+final class UserRepositoryImplementation: UserRepository {
     private let context: NSManagedObjectContext
 
     init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
@@ -76,7 +76,7 @@ final class UserRepository: UserRepositoryProtocol {
 }
 
 // MARK: - Private Methods
-private extension UserRepository {
+private extension UserRepositoryImplementation {
     func addUserFromNetwork(_ user: UserModel) {
         createUserEntity(user, isLocal: false)
     }

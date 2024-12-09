@@ -15,7 +15,7 @@ protocol AddUserViewModelProtocol {
 }
 
 final class AddUserViewModel: AddUserViewModelProtocol {
-    private let userRepository: UserRepositoryProtocol
+    private let userRepository: UserRepository
     private let errorSubject = PublishSubject<String>()
     private let successSubject = PublishSubject<Void>()
     private var isErrorOccurred = false
@@ -29,7 +29,7 @@ final class AddUserViewModel: AddUserViewModelProtocol {
         return successSubject.asObservable()
     }
     
-    init(userRepository: UserRepositoryProtocol) {
+    init(userRepository: UserRepository) {
         self.userRepository = userRepository
     }
     

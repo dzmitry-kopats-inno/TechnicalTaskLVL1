@@ -15,12 +15,12 @@
 		CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */; };
 		CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */; };
 		CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */; };
-		CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */; };
+		CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */; };
 		CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */; };
 		CE2A5AAE2CF4EED200CEDCE1 /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */; };
 		CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AAF2CF5FE0100CEDCE1 /* UserModel.xcdatamodeld */; };
 		CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */; };
-		CE2A5AB52CF6001900CEDCE1 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */; };
+		CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */; };
 		CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ABD2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift */; };
 		CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ABE2CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift */; };
 		CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */; };
@@ -38,12 +38,12 @@
 		CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewModel.swift; sourceTree = "<group>"; };
-		CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImplementation.swift; sourceTree = "<group>"; };
 		CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
 		CE2A5AB02CF5FE0100CEDCE1 /* UserModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserModel.xcdatamodel; sourceTree = "<group>"; };
 		CE2A5AB22CF5FEF600CEDCE1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImplementation.swift; sourceTree = "<group>"; };
 		CE2A5ABD2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		CE2A5ABE2CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE2A5AC12CF74D0D00CEDCE1 /* AddUserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserViewModel.swift; sourceTree = "<group>"; };
@@ -115,9 +115,9 @@
 			children = (
 				CE2A5AB62CF6086600CEDCE1 /* CoreData */,
 				CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */,
-				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkService.swift */,
+				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
 				CE2A5AAD2CF4EED200CEDCE1 /* UIView+Ex.swift */,
-				CE2A5AB42CF6001900CEDCE1 /* UserRepository.swift */,
+				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
 				CE9F09292CEF659F00CFA6B5 /* Application */,
 				CE2A5AA02CF4CDAA00CEDCE1 /* AllUsersModule */,
 				CE9F092A2CEF65CA00CFA6B5 /* AddUserModule */,
@@ -242,11 +242,11 @@
 				CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */,
 				CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */,
 				CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */,
-				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkService.swift in Sources */,
+				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 				CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */,
 				CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */,
-				CE2A5AB52CF6001900CEDCE1 /* UserRepository.swift in Sources */,
+				CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */,
 				CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */,
 				CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */,
 				CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */,

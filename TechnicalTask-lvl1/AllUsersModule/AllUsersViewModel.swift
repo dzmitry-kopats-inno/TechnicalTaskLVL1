@@ -14,14 +14,14 @@ protocol AllUsersViewModelProtocol {
     var error: Observable<Error> { get }
     
     func fetchUsers() -> Completable
-    func getUserRepository() -> UserRepositoryProtocol
+    func getUserRepository() -> UserRepository
     func delete(user: UserModel) -> Completable
 }
 
 final class AllUsersViewModel: AllUsersViewModelProtocol {
     // MARK: - Properties
-    private let networkService: NetworkServiceProtocol
-    private let userRepository: UserRepositoryProtocol
+    private let networkService: NetworkService
+    private let userRepository: UserRepository
     private let disposeBag = DisposeBag()
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue(label: "NetworkMonitorQueue")
@@ -37,7 +37,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     private let _error = PublishSubject<Error>()
     
     // MARK: - Life cycle
-    init(networkService: NetworkServiceProtocol, userRepository: UserRepositoryProtocol) {
+    init(networkService: NetworkService, userRepository: UserRepository) {
         self.networkService = networkService
         self.userRepository = userRepository
         
@@ -46,7 +46,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     }
     
     // MARK: - Methods
-    func getUserRepository() -> UserRepositoryProtocol {
+    func getUserRepository() -> UserRepository {
         userRepository
     }
     
