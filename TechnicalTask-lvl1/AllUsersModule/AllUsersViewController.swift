@@ -214,7 +214,7 @@ private extension AllUsersViewController {
                 
                 self.viewModel.delete(user: user)
                     .subscribe(onCompleted: {
-                        UIView.transition(with: self.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {
+                        UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve, animations: {
                             _ = self.viewModel.fetchUsers()
                         })
                     }, onError: { error in
@@ -223,11 +223,5 @@ private extension AllUsersViewController {
                     .disposed(by: self.disposeBag)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func showError(_ error: Error) {
-        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        self.present(alert, animated: true)
     }
 }

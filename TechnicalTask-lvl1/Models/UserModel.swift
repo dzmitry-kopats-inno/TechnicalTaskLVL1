@@ -5,8 +5,6 @@
 //  Created by Dzmitry Kopats on 25/11/2024.
 //
 
-import Foundation
-
 struct UserModel: Codable {
     let email: String
     let name: String

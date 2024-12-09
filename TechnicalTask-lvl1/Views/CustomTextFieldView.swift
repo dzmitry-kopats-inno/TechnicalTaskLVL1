@@ -37,6 +37,14 @@ final class CustomTextFieldView: UIView {
         textField.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
         return textField
     }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [label, textField])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Constants.commonSpacing
+        return stackView
+    }()
 
     // MARK: - Life cycle
     init(labelText: String, type: CustomTextFieldType = .text) {
@@ -68,11 +76,6 @@ private extension CustomTextFieldView {
             textField.keyboardType = .emailAddress
             textField.autocapitalizationType = .none
         }
-
-        let stackView = UIStackView(arrangedSubviews: [label, textField])
-        stackView.axis = .vertical
-        stackView.spacing = Constants.commonSpacing
-        stackView.translatesAutoresizingMaskIntoConstraints = false
 
         addSubview(stackView)
         NSLayoutConstraint.activate([

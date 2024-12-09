@@ -12,6 +12,7 @@ private enum Constants {
     static let commonSpacing: CGFloat = 8.0
     static let commonInset: CGFloat = 16.0
     static let cornerRadius: CGFloat = 8.0
+    static let saveButtonHeight: CGFloat = 50.0
     static let screenTitle = "Add New User"
     static let saveButtonTitle = "Save"
     static let instructionLabelText = "Provide all info to save user:"
@@ -37,6 +38,20 @@ final class AddUserViewController: UIViewController {
     private let cityField = CustomTextFieldView(labelText: "City Name:", type: .text)
     private let streetField = CustomTextFieldView(labelText: "Street Name:", type: .text)
     
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(arrangedSubviews: [
+            instructionLabel,
+            nameField,
+            emailField,
+            cityField,
+            streetField
+        ])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.spacing = Constants.commonSpacing * 2
+        return stackView
+    }()
+    
     private let saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +66,7 @@ final class AddUserViewController: UIViewController {
     // MARK: - Life Cycle
     init(viewModel: AddUserViewModelProtocol) {
         self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
+        super.init()
     }
     
     required init?(coder: NSCoder) {
@@ -72,17 +87,6 @@ private extension AddUserViewController {
         view.backgroundColor = .white
         title = Constants.screenTitle
 
-        let stackView = UIStackView(arrangedSubviews: [
-            instructionLabel,
-            nameField,
-            emailField,
-            cityField,
-            streetField
-        ])
-        stackView.axis = .vertical
-        stackView.spacing = Constants.commonSpacing * 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(stackView)
         view.addSubview(saveButton)
 
@@ -94,7 +98,7 @@ private extension AddUserViewController {
             saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.commonInset),
             saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.commonInset),
             saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.commonInset),
-            saveButton.heightAnchor.constraint(equalToConstant: 50.0)
+            saveButton.heightAnchor.constraint(equalToConstant: Constants.saveButtonHeight)
         ])
     }
 
@@ -149,12 +153,6 @@ private extension AddUserViewController {
             return false
         }
         return true
-    }
-    
-    func showError(_ message: String) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
     
     func setupDismissKeyboardGesture() {
