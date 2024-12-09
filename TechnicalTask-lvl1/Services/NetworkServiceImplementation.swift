@@ -15,12 +15,14 @@ protocol NetworkService {
 final class NetworkServiceImplementation: NetworkService {
     // MARK: - Properties
     private let session: URLSession
+    private let decoder: JSONDecoder
     
     // MARK: - Life cycle
-    init(timeout: TimeInterval = 5) {
+    init(timeout: TimeInterval = 5, decoder: JSONDecoder = JSONDecoder()) {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForRequest = timeout
         self.session = URLSession(configuration: configuration)
+        self.decoder = decoder
     }
     
     // MARK: - Methods
@@ -41,7 +43,7 @@ private extension NetworkServiceImplementation {
         
         return session.rx.data(request: request)
             .map { data in
-                let decodedResponse = try JSONDecoder().decode(T.self, from: data)
+                let decodedResponse = try self.decoder.decode(T.self, from: data)
                 return decodedResponse
             }
             .catch { error in
