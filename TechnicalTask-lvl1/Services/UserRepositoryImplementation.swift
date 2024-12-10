@@ -13,13 +13,17 @@ protocol UserRepository {
     func update(with users: [UserModel])
     func addLocalUser(_ user: UserModel)
     func deleteUser(_ user: UserModel) -> Completable
+    func isValidEmail(_ email: String) -> Bool
 }
 
 final class UserRepositoryImplementation: UserRepository {
     private let context: NSManagedObjectContext
-
-    init(context: NSManagedObjectContext = CoreDataStack.shared.context) {
+    private let emailValidationService: ValidationService
+    
+    init(context: NSManagedObjectContext = CoreDataStack.shared.context,
+         emailValidationService: ValidationService = EmailValidationService()) {
         self.context = context
+        self.emailValidationService = emailValidationService
     }
     
     func fetchUsers() -> [UserModel] {
@@ -36,12 +40,19 @@ final class UserRepositoryImplementation: UserRepository {
     func update(with users: [UserModel]) {
         let localUsers = fetchUsers()
         let localUserEmails = Set(localUsers.map { $0.email })
-        let newUsers = users.filter { !localUserEmails.contains($0.email) }
+        let validUsers = users.filter { isValidEmail($0.email) }
+        let newUsers = validUsers.filter { !localUserEmails.contains($0.email) }
         newUsers.forEach { addUserFromNetwork($0) }
         saveContext()
     }
     
     func addLocalUser(_ user: UserModel) {
+        guard isValidEmail(user.email) else {
+            // TODO: - Add error here
+            debugPrint("Invalid email format: \(user.email)")
+            return
+        }
+        
         createUserEntity(user, isLocal: true)
         saveContext()
     }
@@ -72,6 +83,10 @@ final class UserRepositoryImplementation: UserRepository {
             
             return Disposables.create()
         }
+    }
+    
+    func isValidEmail(_ email: String) -> Bool {
+        emailValidationService.isValid(email)
     }
 }
 

@@ -35,7 +35,7 @@ final class AddUserViewModel: AddUserViewModelProtocol {
     
     func validateUserInput(name: String, email: String, city: String?, street: String?) {
         isErrorOccurred = false
-        guard isValidEmail(email) else {
+        guard userRepository.isValidEmail(email) else {
             isErrorOccurred = true
             errorSubject.onNext("Invalid email format.")
             return
@@ -62,11 +62,5 @@ final class AddUserViewModel: AddUserViewModelProtocol {
         userRepository.addLocalUser(newUser)
         
         successSubject.onNext(())
-    }
-
-    private func isValidEmail(_ email: String) -> Bool {
-        let emailRegEx = ".+@.+"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
-        return emailPredicate.evaluate(with: email)
     }
 }
