@@ -157,25 +157,29 @@ private extension AllUsersViewController {
         addButton.rx.tap
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
-                let viewModel = AddUserViewModel(userRepository: viewModel.getUserRepository())
-                let userViewController = AddUserViewController(viewModel: viewModel)
-                
-                viewModel.success
-                    .observe(on: MainScheduler.instance)
-                    .subscribe(onNext: { [weak self] in
-                        guard let self else { return }
-                        self.viewModel.fetchUsers()
-                            .subscribe(onError: { [weak self] error in
-                                guard let self else { return }
-                                showError(error)
-                            })
-                            .disposed(by: disposeBag)
-                    })
-                    .disposed(by: disposeBag)
-                
-                navigationController?.pushViewController(userViewController, animated: true)
+                navigateToAddUserScreen()
             })
             .disposed(by: disposeBag)
+    }
+    
+    func navigateToAddUserScreen() {
+        let viewModel = AddUserViewModel(userRepository: viewModel.getUserRepository())
+        let userViewController = AddUserViewController(viewModel: viewModel)
+        
+        viewModel.success
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                guard let self else { return }
+                self.viewModel.fetchUsers()
+                    .subscribe(onError: { [weak self] error in
+                        guard let self else { return }
+                        showError(error)
+                    })
+                    .disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+        
+        navigationController?.pushViewController(userViewController, animated: true)
     }
     
     @objc func handleRefresh() {
