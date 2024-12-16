@@ -32,7 +32,6 @@ final class NetworkServiceImplementation: NetworkService {
     }
 }
 
-// MARK: - Private methods
 private extension NetworkServiceImplementation {
     func performRequest<T: Decodable>(url: URL, 
                                       method: String = "GET", 

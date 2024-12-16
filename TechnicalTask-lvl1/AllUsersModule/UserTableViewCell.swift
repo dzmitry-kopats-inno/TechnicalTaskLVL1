@@ -96,7 +96,6 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     }
 }
 
-// MARK: - Private methods
 private extension UserTableViewCell {
     func setupUI() {
         contentView.addSubview(containerView)

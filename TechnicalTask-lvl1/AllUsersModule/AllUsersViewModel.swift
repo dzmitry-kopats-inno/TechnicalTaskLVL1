@@ -82,7 +82,6 @@ final class AllUsersViewModel {
     }
 }
 
-// MARK: - Private methods
 private extension AllUsersViewModel {
     func loadDataAtStart() {
         fetchUsers()

@@ -86,7 +86,6 @@ final class UserRepositoryImplementation: UserRepository {
     }
 }
 
-// MARK: - Private Methods
 private extension UserRepositoryImplementation {
     func addUserFromNetwork(_ user: UserModel) {
         createUserEntity(user, isLocal: false)

@@ -21,6 +21,12 @@ enum CustomTextFieldType {
 final class CustomTextFieldView: UIView {
     // MARK: - Properties
     private let type: CustomTextFieldType
+    
+    var text: String? {
+        get { textField.text }
+        set { textField.text = newValue }
+    }
+    
     // MARK: - GUI Properties
     private let label: UILabel = {
         let label = UILabel()
@@ -56,18 +62,13 @@ final class CustomTextFieldView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    var text: String? {
-        get { textField.text }
-        set { textField.text = newValue }
-    }
-
+    
+    // MARK: - Methods
     func setBorderColor(_ color: UIColor) {
         textField.layer.borderColor = color.cgColor
     }
 }
 
-// MARK: - Private methods
 private extension CustomTextFieldView {
     func setupUI(labelText: String) {
         label.text = labelText
