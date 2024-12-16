@@ -9,19 +9,18 @@ import Foundation
 import RxSwift
 
 protocol AddUserViewModelProtocol {
-    var error: Observable<String> { get }
+    var error: Observable<Error> { get }
     var success: Observable<Void> { get }
     func addUser(name: String, email: String, city: String?, street: String?)
 }
 
 final class AddUserViewModel: AddUserViewModelProtocol {
     private let userRepository: UserRepository
-    private let errorSubject = PublishSubject<String>()
+    private let errorSubject = PublishSubject<Error>()
     private let successSubject = PublishSubject<Void>()
-    private var isErrorOccurred = false
     private let disposeBag = DisposeBag()
 
-    var error: Observable<String> {
+    var error: Observable<Error> {
         errorSubject.asObservable()
     }
 
@@ -31,36 +30,39 @@ final class AddUserViewModel: AddUserViewModelProtocol {
     
     init(userRepository: UserRepository) {
         self.userRepository = userRepository
+        
+        userRepository.errorPublisher
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] error in
+                guard let self else { return }
+                errorSubject.onNext(error)
+            })
+            .disposed(by: disposeBag)
     }
     
-    func validateUserInput(name: String, email: String, city: String?, street: String?) {
-        isErrorOccurred = false
+    func validateUserInput(name: String, email: String, city: String?, street: String?) throws {
         guard userRepository.isValidEmail(email) else {
-            isErrorOccurred = true
-            errorSubject.onNext("Invalid email format.")
-            return
+            throw AppError(message: "Invalid email format.")
         }
 
         let existingUsers = userRepository.fetchUsers()
         if existingUsers.contains(where: { $0.email == email }) {
-            isErrorOccurred = true
-            errorSubject.onNext("Email is already taken.")
+            throw AppError(message: "Email is already taken.")
         }
     }
 
     func addUser(name: String, email: String, city: String?, street: String?) {
-        validateUserInput(name: name, email: email, city: city, street: street)
-        
-        if isErrorOccurred { return }
-        
-        let newUser = UserModel(
-            email: email,
-            name: name,
-            address: Address(city: city ?? "N/A", street: street)
-        )
-        
-        userRepository.addLocalUser(newUser)
-        
-        successSubject.onNext(())
+        do {
+            try validateUserInput(name: name, email: email, city: city, street: street)
+            
+            let address = Address(city: city ?? "N/A", street: street)
+            let newUser = UserModel(email: email, name: name, address: address)
+            
+            userRepository.addLocalUser(newUser)
+            
+            successSubject.onNext(())
+        } catch {
+            errorSubject.onNext(error)
+        }
     }
 }

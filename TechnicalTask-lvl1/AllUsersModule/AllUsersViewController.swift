@@ -213,14 +213,10 @@ private extension AllUsersViewController {
                 let user = users[indexPath.row]
                 
                 self.viewModel.delete(user: user)
-                    .subscribe(onCompleted: {
-                        UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve, animations: {
-                            _ = self.viewModel.fetchUsers()
-                        })
-                    }, onError: { error in
-                        self.showError(error)
-                    })
-                    .disposed(by: self.disposeBag)
+                
+                UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve, animations: {
+                    _ = self.viewModel.fetchUsers()
+                })
             })
             .disposed(by: disposeBag)
     }

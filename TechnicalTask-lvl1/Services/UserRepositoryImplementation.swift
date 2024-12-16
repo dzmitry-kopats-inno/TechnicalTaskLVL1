@@ -9,16 +9,23 @@ import CoreData
 import RxSwift
 
 protocol UserRepository {
+    var errorPublisher: Observable<AppError> { get }
+    
     func fetchUsers() -> [UserModel]
     func update(with users: [UserModel])
     func addLocalUser(_ user: UserModel)
-    func deleteUser(_ user: UserModel) -> Completable
+    func deleteUser(_ user: UserModel)
     func isValidEmail(_ email: String) -> Bool
 }
 
 final class UserRepositoryImplementation: UserRepository {
     private let context: NSManagedObjectContext
     private let emailValidationService: ValidationService
+    private let errorSubject = PublishSubject<AppError>()
+
+    var errorPublisher: Observable<AppError> {
+        errorSubject.asObservable()
+    }
     
     init(context: NSManagedObjectContext = CoreDataStack.shared.context,
          emailValidationService: ValidationService = EmailValidationService()) {
@@ -32,7 +39,7 @@ final class UserRepositoryImplementation: UserRepository {
             let users = try context.fetch(fetchRequest)
             return users.map { UserModel(userEntity: $0) }
         } catch {
-            debugPrint("Failed to fetch local users with \(error)")
+            errorSubject.onNext(AppError(message: "Failed to fetch users: \(error.localizedDescription)"))
             return []
         }
     }
@@ -43,45 +50,42 @@ final class UserRepositoryImplementation: UserRepository {
         let validUsers = users.filter { isValidEmail($0.email) }
         let newUsers = validUsers.filter { !localUserEmails.contains($0.email) }
         newUsers.forEach { addUserFromNetwork($0) }
-        saveContext()
+        
+        do {
+            try context.save()
+        } catch {
+            errorSubject.onNext(AppError(message: "Failed to update users: \(error.localizedDescription)"))
+        }
     }
     
     func addLocalUser(_ user: UserModel) {
         guard isValidEmail(user.email) else {
-            // TODO: - Add error here
-            debugPrint("Invalid email format: \(user.email)")
+            errorSubject.onNext(AppError(message: "Invalid email format: \(user.email)"))
             return
         }
         
         createUserEntity(user, isLocal: true)
-        saveContext()
+        do {
+            try context.save()
+        } catch {
+            errorSubject.onNext(AppError(message: "Failed to save user: \(error.localizedDescription)"))
+        }
     }
     
-    func deleteUser(_ user: UserModel) -> Completable {
-        return Completable.create { [weak self] completable in
-            guard let self else {
-                completable(.error(AppError(message: "Repository deallocated")))
-                return Disposables.create()
+    func deleteUser(_ user: UserModel) {
+        let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "email ==[c] %@", user.email)
+        
+        do {
+            let fetchedUsers = try context.fetch(fetchRequest)
+            if let userEntity = fetchedUsers.first {
+                context.delete(userEntity)
+                try context.save()
+            } else {
+                errorSubject.onNext(AppError(message: "User not found"))
             }
-            
-            let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
-            fetchRequest.predicate = NSPredicate(format: "email ==[c] %@", user.email)
-            
-            do {
-                let fetchedUsers = try self.context.fetch(fetchRequest)
-                
-                if let userEntity = fetchedUsers.first {
-                    self.context.delete(userEntity)
-                    self.saveContext()
-                    completable(.completed)
-                } else {
-                    completable(.error(AppError(message: "User not found")))
-                }
-            } catch {
-                completable(.error(error))
-            }
-            
-            return Disposables.create()
+        } catch {
+            errorSubject.onNext(AppError(message: "Failed to delete user: \(error.localizedDescription)"))
         }
     }
     
@@ -96,7 +100,7 @@ private extension UserRepositoryImplementation {
         createUserEntity(user, isLocal: false)
     }
     
-    func createUserEntity(_ user: UserModel, isLocal: Bool){
+    func createUserEntity(_ user: UserModel, isLocal: Bool) {
         let newUser = UserEntity(context: context)
         newUser.name = user.name
         newUser.email = user.email

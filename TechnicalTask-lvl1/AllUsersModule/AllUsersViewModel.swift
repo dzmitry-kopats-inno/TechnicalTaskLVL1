@@ -14,7 +14,7 @@ protocol AllUsersViewModelProtocol {
     
     func fetchUsers() -> Completable
     func getUserRepository() -> UserRepository
-    func delete(user: UserModel) -> Completable
+    func delete(user: UserModel)
 }
 
 final class AllUsersViewModel: AllUsersViewModelProtocol {
@@ -40,6 +40,7 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         self.networkMonitorService = networkMonitorService
         self.userRepository = userRepository
         
+        observeRepositoryErrors()
         observeNetworkChanges()
         loadDataAtStart()
     }
@@ -74,16 +75,14 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         }
     }
     
-    func delete(user: UserModel) -> Completable {
+    func delete(user: UserModel) {
         userRepository.deleteUser(user)
-            .do(onCompleted: { [weak self] in
-                guard let self else { return }
-                var currentUsers = try? self.usersSubject.value()
-                currentUsers?.removeAll { $0.email == user.email }
-                if let updatedUsers = currentUsers {
-                    self.usersSubject.onNext(updatedUsers)
-                }
-            })
+        
+        var currentUsers = try? self.usersSubject.value()
+        currentUsers?.removeAll { $0.email == user.email }
+        if let updatedUsers = currentUsers {
+            self.usersSubject.onNext(updatedUsers)
+        }
     }
 }
 
@@ -118,5 +117,14 @@ private extension AllUsersViewModel {
             .disposed(by: disposeBag)
         
         networkMonitorService.start()
+    }
+    
+    func observeRepositoryErrors() {
+        userRepository.errorPublisher
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] error in
+                self?.errorSubject.onNext(error)
+            })
+            .disposed(by: disposeBag)
     }
 }
