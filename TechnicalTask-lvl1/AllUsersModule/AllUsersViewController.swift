@@ -139,12 +139,13 @@ private extension AllUsersViewController {
     }
     
     func bindViewModel() {
+        let identifier = UserTableViewCell.reuseIdentifier
+        let cellType = UserTableViewCell.self
         viewModel.users
-            .bind(to: tableView.rx.items(cellIdentifier: UserTableViewCell.reuseIdentifier,
-                                         cellType: UserTableViewCell.self)) { index, user, cell in
+            .bind(to: tableView.rx.items(cellIdentifier: identifier, cellType: cellType)) { _, user, cell in
                 cell.configure(with: user)
             }
-                                         .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         viewModel.error
             .observe(on: MainScheduler.instance)
