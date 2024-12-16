@@ -51,11 +51,7 @@ final class UserRepositoryImplementation: UserRepository {
         let newUsers = validUsers.filter { !localUserEmails.contains($0.email) }
         newUsers.forEach { addUserFromNetwork($0) }
         
-        do {
-            try context.save()
-        } catch {
-            errorSubject.onNext(AppError(message: "Failed to update users: \(error.localizedDescription)"))
-        }
+        saveContext(errorText: "Failed to update users")
     }
     
     func addLocalUser(_ user: UserModel) {
@@ -65,11 +61,7 @@ final class UserRepositoryImplementation: UserRepository {
         }
         
         createUserEntity(user, isLocal: true)
-        do {
-            try context.save()
-        } catch {
-            errorSubject.onNext(AppError(message: "Failed to save user: \(error.localizedDescription)"))
-        }
+        saveContext(errorText: "Failed to save user")
     }
     
     func deleteUser(_ user: UserModel) {
@@ -80,7 +72,7 @@ final class UserRepositoryImplementation: UserRepository {
             let fetchedUsers = try context.fetch(fetchRequest)
             if let userEntity = fetchedUsers.first {
                 context.delete(userEntity)
-                try context.save()
+                saveContext(errorText: "Failed to delete user")
             } else {
                 errorSubject.onNext(AppError(message: "User not found"))
             }
@@ -109,12 +101,13 @@ private extension UserRepositoryImplementation {
         newUser.isLocal = isLocal
     }
     
-    func saveContext() {
+    func saveContext(errorText: String) {
         guard context.hasChanges else { return }
         do {
             try context.save()
         } catch {
-            debugPrint("Failed to save Core Data context with \(error)")
+            let appError = AppError(message: "\(errorText) - \(error.localizedDescription)")
+            errorSubject.onNext(appError)
         }
     }
 }
