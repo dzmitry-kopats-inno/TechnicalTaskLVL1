@@ -33,7 +33,6 @@ final class AllUsersViewModel {
         
         observeRepositoryErrors()
         observeNetworkChanges()
-        loadDataAtStart()
     }
     
     // MARK: - Methods
@@ -83,12 +82,6 @@ final class AllUsersViewModel {
 }
 
 private extension AllUsersViewModel {
-    func loadDataAtStart() {
-        fetchUsers()
-            .subscribe()
-            .disposed(by: disposeBag)
-    }
-    
     func loadLocalUsers() {
         let localUsers = userRepository.fetchUsers()
         let sortedUsers = localUsers.sorted {

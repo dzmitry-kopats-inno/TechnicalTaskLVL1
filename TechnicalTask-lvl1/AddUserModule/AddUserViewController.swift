@@ -66,7 +66,7 @@ final class AddUserViewController: UIViewController {
     // MARK: - Life Cycle
     init(viewModel: AddUserViewModel) {
         self.viewModel = viewModel
-        super.init()
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {

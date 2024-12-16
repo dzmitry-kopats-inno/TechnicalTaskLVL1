@@ -126,6 +126,8 @@ private extension AllUsersViewController {
     }
     
     func bindViewModel() {
+        _ = viewModel.fetchUsers()
+        
         let identifier = UserTableViewCell.reuseIdentifier
         let cellType = UserTableViewCell.self
         viewModel.users
