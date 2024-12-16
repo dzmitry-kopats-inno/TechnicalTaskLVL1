@@ -81,7 +81,6 @@ final class AddUserViewController: UIViewController {
     }
 }
 
-// MARK: - Private methods
 private extension AddUserViewController {
     func setupUI() {
         view.backgroundColor = .white

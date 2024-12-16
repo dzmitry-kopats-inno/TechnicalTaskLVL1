@@ -29,6 +29,7 @@
 		CE2A5ACD2D07798400CEDCE1 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ACC2D07798400CEDCE1 /* AppError.swift */; };
 		CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */; };
 		CE2A5AD12D08989700CEDCE1 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */; };
+		CE2A5AD32D10EEE100CEDCE1 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AD22D10EEE100CEDCE1 /* TableViewHeaderView.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */; };
@@ -56,6 +57,7 @@
 		CE2A5ACC2D07798400CEDCE1 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorServiceImplementation.swift; sourceTree = "<group>"; };
 		CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
+		CE2A5AD22D10EEE100CEDCE1 /* TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderView.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 				CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */,
 				CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */,
 				CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */,
+				CE2A5AD22D10EEE100CEDCE1 /* TableViewHeaderView.swift */,
 			);
 			path = AllUsersModule;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */,
 				CE2A5ACA2D07747A00CEDCE1 /* UIViewController+Extension.swift in Sources */,
 				CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */,
+				CE2A5AD32D10EEE100CEDCE1 /* TableViewHeaderView.swift in Sources */,
 				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 				CE2A5ACD2D07798400CEDCE1 /* AppError.swift in Sources */,

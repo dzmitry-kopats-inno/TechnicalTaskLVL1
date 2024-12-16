@@ -12,10 +12,10 @@ import RxCocoa
 private enum Constants {
     static let headerHeight: CGFloat = 40.0
     static let estimatedRowHeight: CGFloat = 60.0
-    static let headerFont: UIFont = .boldSystemFont(ofSize: 16)
     static let buttonFont: UIFont = .boldSystemFont(ofSize: 18)
     static let headerTitle = "Full list of users"
     static let buttonTitle = "Add User"
+    static let screenTitle = "All users"
     static let commonInset: CGFloat = 8.0
     static let buttonHeight: CGFloat = 50.0
     static let cornerRadius: CGFloat = 8.0
@@ -30,6 +30,7 @@ final class AllUsersViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.reuseIdentifier)
+        tableView.register(TableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: TableViewHeaderView.reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
@@ -72,34 +73,20 @@ final class AllUsersViewController: UIViewController {
 // MARK: UITableViewDelegate
 extension AllUsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-        headerView.backgroundColor = .systemGray
-        
-        let titleLabel = UILabel()
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.text = Constants.headerTitle
-        titleLabel.font = Constants.headerFont
-        titleLabel.textColor = .black
-        
-        headerView.addSubview(titleLabel)
-        
-        NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: Constants.commonInset * 2),
-            titleLabel.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -Constants.commonInset * 2),
-            titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: Constants.commonInset),
-            titleLabel.bottomAnchor.constraint(equalTo: headerView.bottomAnchor, constant: -Constants.commonInset)
-        ])
-        
-        return headerView
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: TableViewHeaderView.reuseIdentifier),
+              let tableViewHeader = header as? TableViewHeaderView else {
+            return nil
+        }
+        tableViewHeader.configure(with: Constants.headerTitle)
+        return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat { Constants.headerHeight }
 }
 
-// MARK: Private methods
 private extension AllUsersViewController {
     func setupUI() {
-        title = "All users"
+        title = Constants.screenTitle
         view.backgroundColor = .white
         
         view.addSubviews([
