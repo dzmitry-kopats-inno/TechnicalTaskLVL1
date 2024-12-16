@@ -20,7 +20,7 @@ private enum Constants {
 
 final class AddUserViewController: UIViewController {
     // MARK: - Properties
-    private let viewModel: AddUserViewModelProtocol
+    private let viewModel: AddUserViewModel
     private let disposeBag = DisposeBag()
 
     // MARK: - GUI Properties
@@ -64,7 +64,7 @@ final class AddUserViewController: UIViewController {
     }()
 
     // MARK: - Life Cycle
-    init(viewModel: AddUserViewModelProtocol) {
+    init(viewModel: AddUserViewModel) {
         self.viewModel = viewModel
         super.init()
     }

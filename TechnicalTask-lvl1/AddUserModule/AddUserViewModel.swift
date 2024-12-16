@@ -8,13 +8,7 @@
 import Foundation
 import RxSwift
 
-protocol AddUserViewModelProtocol {
-    var error: Observable<Error> { get }
-    var success: Observable<Void> { get }
-    func addUser(name: String, email: String, city: String?, street: String?)
-}
-
-final class AddUserViewModel: AddUserViewModelProtocol {
+final class AddUserViewModel {
     private let userRepository: UserRepository
     private let errorSubject = PublishSubject<Error>()
     private let successSubject = PublishSubject<Void>()

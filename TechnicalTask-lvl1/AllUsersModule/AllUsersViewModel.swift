@@ -8,21 +8,14 @@
 import Foundation
 import RxSwift
 
-protocol AllUsersViewModelProtocol {
-    var users: Observable<[UserModel]> { get }
-    var error: Observable<Error> { get }
-    
-    func fetchUsers() -> Completable
-    func getUserRepository() -> UserRepository
-    func deleteUser(at indexPath: IndexPath)
-}
-
-final class AllUsersViewModel: AllUsersViewModelProtocol {
+final class AllUsersViewModel {
     // MARK: - Properties
     private let networkService: NetworkService
     private let networkMonitorService: NetworkMonitorService
     private let userRepository: UserRepository
     private let disposeBag = DisposeBag()
+    private let usersSubject = BehaviorSubject<[UserModel]>(value: [])
+    private let errorSubject = PublishSubject<Error>()
     
     var users: Observable<[UserModel]> {
         usersSubject.asObservable()
@@ -31,8 +24,6 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
     var error: Observable<Error> {
         errorSubject.asObservable()
     }
-    private let usersSubject = BehaviorSubject<[UserModel]>(value: [])
-    private let errorSubject = PublishSubject<Error>()
     
     // MARK: - Life cycle
     init(networkService: NetworkService, networkMonitorService: NetworkMonitorService, userRepository: UserRepository) {

@@ -23,7 +23,7 @@ private enum Constants {
 
 final class AllUsersViewController: UIViewController {
     // MARK: - Properties
-    private let viewModel: AllUsersViewModelProtocol
+    private let viewModel: AllUsersViewModel
     private let disposeBag = DisposeBag()
     // MARK: - GUI Properties
     private let tableView: UITableView = {
@@ -50,7 +50,7 @@ final class AllUsersViewController: UIViewController {
     private let refreshControl = UIRefreshControl()
     
     // MARK: Life cycle
-    init(viewModel: AllUsersViewModelProtocol) {
+    init(viewModel: AllUsersViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
