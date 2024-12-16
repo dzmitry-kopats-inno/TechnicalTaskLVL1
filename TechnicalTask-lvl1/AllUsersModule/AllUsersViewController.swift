@@ -205,19 +205,10 @@ private extension AllUsersViewController {
     }
     
     func deleteUser(at indexPath: IndexPath) {
-        viewModel.users
-            .take(1)
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] users in
-                guard let self, indexPath.row < users.count else { return }
-                let user = users[indexPath.row]
-                
-                self.viewModel.delete(user: user)
-                
-                UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve, animations: {
-                    _ = self.viewModel.fetchUsers()
-                })
-            })
-            .disposed(by: disposeBag)
+        viewModel.deleteUser(at: indexPath)
+        
+        UIView.transition(with: tableView, duration: 0.25, options: .transitionCrossDissolve, animations: {
+            self.tableView.reloadData()
+        })
     }
 }

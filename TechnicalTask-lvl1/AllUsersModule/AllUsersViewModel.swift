@@ -14,7 +14,7 @@ protocol AllUsersViewModelProtocol {
     
     func fetchUsers() -> Completable
     func getUserRepository() -> UserRepository
-    func delete(user: UserModel)
+    func deleteUser(at indexPath: IndexPath)
 }
 
 final class AllUsersViewModel: AllUsersViewModelProtocol {
@@ -75,13 +75,18 @@ final class AllUsersViewModel: AllUsersViewModelProtocol {
         }
     }
     
-    func delete(user: UserModel) {
-        userRepository.deleteUser(user)
-        
-        var currentUsers = try? self.usersSubject.value()
-        currentUsers?.removeAll { $0.email == user.email }
-        if let updatedUsers = currentUsers {
-            self.usersSubject.onNext(updatedUsers)
+    func deleteUser(at indexPath: IndexPath) {
+        do {
+            var currentUsers = try usersSubject.value()
+            guard indexPath.row < currentUsers.count else { return }
+            
+            let userToDelete = currentUsers[indexPath.row]
+            userRepository.deleteUser(userToDelete)
+            
+            currentUsers.remove(at: indexPath.row)
+            usersSubject.onNext(currentUsers)
+        } catch {
+            errorSubject.onNext(error)
         }
     }
 }
