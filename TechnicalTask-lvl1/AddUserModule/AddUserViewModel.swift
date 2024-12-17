@@ -33,21 +33,18 @@ final class AddUserViewModel {
             })
             .disposed(by: disposeBag)
     }
-    
-    func validateUserInput(name: String, email: String, city: String?, street: String?) throws {
-        guard userRepository.isValidEmail(email) else {
-            throw AppError(message: "Invalid email format.")
-        }
 
-        let existingUsers = userRepository.fetchUsers()
-        if existingUsers.contains(where: { $0.email == email }) {
-            throw AppError(message: "Email is already taken.")
-        }
-    }
-
-    func addUser(name: String, email: String, city: String?, street: String?) {
+    func addUser(name: String?, email: String?, city: String?, street: String?) {
         do {
-            try validateUserInput(name: name, email: email, city: city, street: street)
+            guard let name = name, !name.isEmpty else {
+                throw AppError(message: "Name cannot be empty.")
+            }
+            
+            guard let email = email, !email.isEmpty else {
+                throw AppError(message: "Email cannot be empty.")
+            }
+            
+            try validateUserInput(name: name, email: email)
             
             let address = Address(city: city ?? "N/A", street: street)
             let newUser = UserModel(email: email, name: name, address: address)
@@ -57,6 +54,19 @@ final class AddUserViewModel {
             successSubject.onNext(())
         } catch {
             errorSubject.onNext(error)
+        }
+    }
+}
+
+private extension AddUserViewModel {
+    func validateUserInput(name: String, email: String) throws {
+        guard userRepository.isValidEmail(email) else {
+            throw AppError(message: "Invalid email format.")
+        }
+
+        let existingUsers = userRepository.fetchUsers()
+        if existingUsers.contains(where: { $0.email == email }) {
+            throw AppError(message: "Email is already taken.")
         }
     }
 }

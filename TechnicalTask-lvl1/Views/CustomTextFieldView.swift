@@ -67,6 +67,19 @@ final class CustomTextFieldView: UIView {
     func setBorderColor(_ color: UIColor) {
         textField.layer.borderColor = color.cgColor
     }
+    
+    func validate() {
+        switch type {
+        case .requiredText, .email:
+            guard let text = text, !text.isEmpty else {
+                setBorderColor(.red)
+                return
+            }
+        case .text:
+            break
+        }
+        setBorderColor(.black)
+    }
 }
 
 private extension CustomTextFieldView {

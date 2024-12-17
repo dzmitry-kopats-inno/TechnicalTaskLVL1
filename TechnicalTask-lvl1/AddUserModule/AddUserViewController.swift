@@ -106,22 +106,13 @@ private extension AddUserViewController {
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 
-                self.resetFieldBorders()
+                nameField.validate()
+                emailField.validate()
                 
-                let isNameValid = self.validateField(self.nameField)
-                let isEmailValid = self.validateField(self.emailField)
-                
-                guard isNameValid, isEmailValid,
-                      let name = self.nameField.text,
-                      let email = self.emailField.text else {
-                    self.showError("Please fill in all required fields.")
-                    return
-                }
-                
-                let city = self.cityField.text
-                let street = self.streetField.text
-                
-                self.viewModel.addUser(name: name, email: email, city: city, street: street)
+                self.viewModel.addUser(name: nameField.text,
+                                       email: emailField.text,
+                                       city: cityField.text,
+                                       street: streetField.text)
             })
             .disposed(by: disposeBag)
         
@@ -140,18 +131,6 @@ private extension AddUserViewController {
                 navigationController?.popViewController(animated: true)
             })
             .disposed(by: disposeBag)
-    }
-    
-    func resetFieldBorders() {
-        [nameField, emailField].forEach { $0.setBorderColor(.black) }
-    }
-    
-    func validateField(_ field: CustomTextFieldView) -> Bool {
-        guard let text = field.text, !text.isEmpty else {
-            field.setBorderColor(.red)
-            return false
-        }
-        return true
     }
     
     func setupDismissKeyboardGesture() {
