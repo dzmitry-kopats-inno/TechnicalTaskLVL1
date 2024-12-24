@@ -153,7 +153,9 @@ private extension AllUsersViewController {
     }
     
     func navigateToAddUserScreen() {
-        let viewModel = AddUserViewModel(userRepository: viewModel.getUserRepository())
+        let userRepository = viewModel.getUserRepository()
+        let viewModel = AddUserViewModel(userRepository: userRepository,
+                                         validationService: UserValidationService(userRepository: userRepository))
         let userViewController = AddUserViewController(viewModel: viewModel)
         
         viewModel.success

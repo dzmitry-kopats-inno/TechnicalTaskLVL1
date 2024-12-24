@@ -10,6 +10,7 @@ import RxSwift
 
 final class AddUserViewModel {
     private let userRepository: UserRepository
+    private let validationService: UserValidationService
     private let errorSubject = PublishSubject<Error>()
     private let successSubject = PublishSubject<Void>()
     private let disposeBag = DisposeBag()
@@ -22,8 +23,9 @@ final class AddUserViewModel {
         successSubject.asObservable()
     }
     
-    init(userRepository: UserRepository) {
+    init(userRepository: UserRepository, validationService: UserValidationService) {
         self.userRepository = userRepository
+        self.validationService = validationService
         
         userRepository.errorPublisher
             .observe(on: MainScheduler.instance)
@@ -44,7 +46,7 @@ final class AddUserViewModel {
                 throw AppError(message: "Email cannot be empty.")
             }
             
-            try validateUserInput(name: name, email: email)
+            try validationService.validateUserInput(name: name, email: email)
             
             let address = Address(city: city ?? "N/A", street: street)
             let newUser = UserModel(email: email, name: name, address: address)
@@ -54,19 +56,6 @@ final class AddUserViewModel {
             successSubject.onNext(())
         } catch {
             errorSubject.onNext(error)
-        }
-    }
-}
-
-private extension AddUserViewModel {
-    func validateUserInput(name: String, email: String) throws {
-        guard userRepository.isValidEmail(email) else {
-            throw AppError(message: "Invalid email format.")
-        }
-
-        let existingUsers = userRepository.fetchUsers()
-        if existingUsers.contains(where: { $0.email == email }) {
-            throw AppError(message: "Email is already taken.")
         }
     }
 }

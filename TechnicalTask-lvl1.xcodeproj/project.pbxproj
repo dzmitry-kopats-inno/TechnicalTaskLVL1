@@ -30,6 +30,7 @@
 		CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */; };
 		CE2A5AD12D08989700CEDCE1 /* ValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */; };
 		CE2A5AD32D10EEE100CEDCE1 /* TableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AD22D10EEE100CEDCE1 /* TableViewHeaderView.swift */; };
+		CE2A5B6F2D1ADB7E00CEDCE1 /* UserValidationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5B6E2D1ADB7E00CEDCE1 /* UserValidationService.swift */; };
 		CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */; };
 		CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */; };
 		CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */; };
@@ -58,6 +59,7 @@
 		CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitorServiceImplementation.swift; sourceTree = "<group>"; };
 		CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationService.swift; sourceTree = "<group>"; };
 		CE2A5AD22D10EEE100CEDCE1 /* TableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderView.swift; sourceTree = "<group>"; };
+		CE2A5B6E2D1ADB7E00CEDCE1 /* UserValidationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserValidationService.swift; sourceTree = "<group>"; };
 		CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TechnicalTask-lvl1.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9F09142CEF646D00CFA6B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9F09162CEF646D00CFA6B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
 				CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */,
 				CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */,
+				CE2A5B6E2D1ADB7E00CEDCE1 /* UserValidationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */,
 				CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */,
 				CE2A5ACA2D07747A00CEDCE1 /* UIViewController+Extension.swift in Sources */,
+				CE2A5B6F2D1ADB7E00CEDCE1 /* UserValidationService.swift in Sources */,
 				CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */,
 				CE2A5AD32D10EEE100CEDCE1 /* TableViewHeaderView.swift in Sources */,
 				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */,
@@ -475,7 +479,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -507,7 +511,7 @@
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

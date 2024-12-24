@@ -15,7 +15,6 @@ protocol NetworkMonitorService {
 }
 
 final class NetworkMonitorServiceImplementation: NetworkMonitorService {
-    // TODO: - Hide monitor?
     private let monitor: NWPathMonitor
     private let queue = DispatchQueue(label: "NetworkMonitorQueue")
     private let networkStatusSubject = BehaviorSubject<Bool>(value: false)
