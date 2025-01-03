@@ -33,10 +33,25 @@ final class AddUserViewController: UIViewController {
         return label
     }()
 
-    private let nameField = CustomTextFieldView(labelText: "User Name*:", type: .requiredText)
-    private let emailField = CustomTextFieldView(labelText: "User Email*:", type: .email)
-    private let cityField = CustomTextFieldView(labelText: "City Name:", type: .text)
-    private let streetField = CustomTextFieldView(labelText: "Street Name:", type: .text)
+    private let nameField = CustomTextFieldViewBuilder()
+        .setLabelText("User Name*:")
+        .setType(.requiredText)
+        .build()
+    
+    private let emailField = CustomTextFieldViewBuilder()
+        .setLabelText("User Email*:")
+        .setType(.email)
+        .build()
+    
+    private let cityField = CustomTextFieldViewBuilder()
+        .setLabelText("City Name:")
+        .setType(.text)
+        .build()
+    
+    private let streetField = CustomTextFieldViewBuilder()
+        .setLabelText("Street Name:")
+        .setType(.text)
+        .build()
     
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [

@@ -53,14 +53,23 @@ final class CustomTextFieldView: UIView {
     }()
 
     // MARK: - Life cycle
-    init(labelText: String, type: CustomTextFieldType = .text) {
+    init(labelText: String,
+         type: CustomTextFieldType,
+         keyboardType: UIKeyboardType = .default,
+         autocapitalizationType: UITextAutocapitalizationType = .none,
+         borderColor: UIColor = .black) {
         self.type = type
         super.init(frame: .zero)
-        setupUI(labelText: labelText)
+        setupUI(
+            labelText: labelText,
+            keyboardType: keyboardType,
+            autocapitalizationType: autocapitalizationType,
+            borderColor: borderColor
+        )
     }
 
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        nil
     }
     
     // MARK: - Methods
@@ -71,7 +80,7 @@ final class CustomTextFieldView: UIView {
     func validate() {
         switch type {
         case .requiredText, .email:
-            guard let text = text, !text.isEmpty else {
+            guard let text, !text.isEmpty else {
                 setBorderColor(.red)
                 return
             }
@@ -83,13 +92,16 @@ final class CustomTextFieldView: UIView {
 }
 
 private extension CustomTextFieldView {
-    func setupUI(labelText: String) {
+    func setupUI(
+        labelText: String,
+        keyboardType: UIKeyboardType,
+        autocapitalizationType: UITextAutocapitalizationType,
+        borderColor: UIColor
+    ) {
         label.text = labelText
-
-        if type == .email {
-            textField.keyboardType = .emailAddress
-            textField.autocapitalizationType = .none
-        }
+        textField.keyboardType = keyboardType
+        textField.autocapitalizationType = autocapitalizationType
+        textField.layer.borderColor = borderColor.cgColor
 
         addSubview(stackView)
         NSLayoutConstraint.activate([
