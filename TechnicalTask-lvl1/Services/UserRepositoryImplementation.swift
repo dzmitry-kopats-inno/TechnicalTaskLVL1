@@ -22,15 +22,22 @@ final class UserRepositoryImplementation: UserRepository {
     private let context: NSManagedObjectContext
     private let emailValidationService: ValidationService
     private let errorSubject = PublishSubject<AppError>()
+    private let disposeBag = DisposeBag()
 
     var errorPublisher: Observable<AppError> {
         errorSubject.asObservable()
     }
     
-    init(context: NSManagedObjectContext = CoreDataStack.shared.context,
+    init(coreDataStack: CoreDataStack = CoreDataStack.shared,
          emailValidationService: ValidationService = EmailValidationService()) {
-        self.context = context
+        self.context = coreDataStack.context
         self.emailValidationService = emailValidationService
+        
+        coreDataStack.errorPublisher
+            .subscribe { [weak self] appError in
+                self?.errorSubject.onNext(appError)
+            }
+            .disposed(by: disposeBag)
     }
     
     func fetchUsers() -> [UserModel] {
