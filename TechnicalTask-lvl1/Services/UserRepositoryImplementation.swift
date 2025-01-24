@@ -101,7 +101,7 @@ private extension UserRepositoryImplementation {
     func createUserEntity(_ user: UserModel, isLocal: Bool) {
         let newUser = UserEntity(context: context)
         newUser.name = user.name
-        newUser.email = user.email
+        newUser.email = user.email.lowercased()
         newUser.city = user.address?.city
         newUser.street = user.address?.street
         newUser.isLocal = isLocal
