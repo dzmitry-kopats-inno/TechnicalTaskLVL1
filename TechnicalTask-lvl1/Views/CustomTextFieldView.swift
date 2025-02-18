@@ -31,16 +31,18 @@ final class CustomTextFieldView: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16, weight: .medium)
+        label.textColor = .label
         return label
     }()
     
     private let textField: UITextField = {
         let textField = UITextField()
-        textField.layer.borderColor = UIColor.black.cgColor
+        textField.layer.borderColor = UIColor.label.cgColor
         textField.layer.borderWidth = 1.0
         textField.layer.cornerRadius = 8.0
         textField.font = .systemFont(ofSize: 14)
         textField.heightAnchor.constraint(equalToConstant: 40.0).isActive = true
+        textField.textColor = .label
         return textField
     }()
     
@@ -57,7 +59,7 @@ final class CustomTextFieldView: UIView {
          type: CustomTextFieldType,
          keyboardType: UIKeyboardType = .default,
          autocapitalizationType: UITextAutocapitalizationType = .none,
-         borderColor: UIColor = .black) {
+         borderColor: UIColor = .label) {
         self.type = type
         super.init(frame: .zero)
         setupUI(
@@ -87,7 +89,7 @@ final class CustomTextFieldView: UIView {
         case .text:
             break
         }
-        setBorderColor(.black)
+        setBorderColor(.label)
     }
 }
 

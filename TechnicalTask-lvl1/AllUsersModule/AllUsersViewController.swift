@@ -34,6 +34,7 @@ final class AllUsersViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = Constants.estimatedRowHeight
+        tableView.backgroundColor = .systemBackground
         return tableView
     }()
     
@@ -87,7 +88,9 @@ extension AllUsersViewController: UITableViewDelegate {
 private extension AllUsersViewController {
     func setupUI() {
         title = Constants.screenTitle
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
+        
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.label]
         
         view.addSubviews([
             tableView,

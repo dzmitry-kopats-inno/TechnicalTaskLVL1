@@ -56,7 +56,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.black.cgColor
+        view.layer.borderColor = UIColor.label.cgColor
         view.layer.cornerRadius = 8
         view.layer.masksToBounds = true
         return view

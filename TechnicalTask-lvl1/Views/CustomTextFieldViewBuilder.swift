@@ -12,7 +12,7 @@ final class CustomTextFieldViewBuilder {
     private var type: CustomTextFieldType = .text
     private var keyboardType: UIKeyboardType = .default
     private var autocapitalizationType: UITextAutocapitalizationType = .none
-    private var borderColor: UIColor = .black
+    private var borderColor: UIColor = .label
     
     func setLabelText(_ text: String) -> CustomTextFieldViewBuilder {
         labelText = text

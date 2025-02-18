@@ -98,7 +98,7 @@ final class AddUserViewController: UIViewController {
 
 private extension AddUserViewController {
     func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         title = Constants.screenTitle
 
         view.addSubview(stackView)
