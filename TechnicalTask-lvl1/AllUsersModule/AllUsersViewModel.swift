@@ -40,29 +40,20 @@ final class AllUsersViewModel {
         userRepository
     }
     
-    func fetchUsers() -> Completable {
-        return Completable.create { [weak self] completable in
-            guard let self else {
-                completable(.error(AppError(message: "ViewModel deallocated")))
-                return Disposables.create()
-            }
-            
-            networkService.fetchUsers()
-                .subscribe(onNext: { [weak self] users in
-                    guard let self else { return }
-                    userRepository.update(with: users)
-                    loadLocalUsers()
-                    completable(.completed)
-                }, onError: { [weak self] error in
-                    guard let self else { return }
-                    errorSubject.onNext(error)
-                    loadLocalUsers()
-                    completable(.error(error))
-                })
-                .disposed(by: disposeBag)
-            
-            return Disposables.create()
-        }
+    func fetchUsers(completion: (() -> Void)? = nil) {
+        networkService.fetchUsers()
+            .subscribe(onNext: { [weak self] users in
+                guard let self else { return }
+                userRepository.update(with: users)
+                loadLocalUsers()
+                completion?()
+            }, onError: { [weak self] error in
+                guard let self else { return }
+                errorSubject.onNext(error)
+                loadLocalUsers()
+                completion?()
+            })
+            .disposed(by: disposeBag)
     }
     
     func deleteUser(at indexPath: IndexPath) {
@@ -97,7 +88,7 @@ private extension AllUsersViewModel {
             .subscribe(onNext: { [weak self] isAvailable in
                 guard let self else { return }
                 if isAvailable {
-                    _ = self.fetchUsers()
+                    self.fetchUsers()
                 } else {
                     self.loadLocalUsers()
                 }

@@ -67,7 +67,6 @@ final class AllUsersViewController: UIViewController {
         setupUI()
         setupTableView()
         bindViewModel()
-        _ = viewModel.fetchUsers()
     }
 }
 
@@ -129,8 +128,6 @@ private extension AllUsersViewController {
     }
     
     func bindViewModel() {
-        _ = viewModel.fetchUsers()
-        
         let identifier = UserTableViewCell.reuseIdentifier
         let cellType = UserTableViewCell.self
         viewModel.users
@@ -157,36 +154,29 @@ private extension AllUsersViewController {
     
     func navigateToAddUserScreen() {
         let userRepository = viewModel.getUserRepository()
-        let viewModel = AddUserViewModel(userRepository: userRepository,
-                                         validationService: UserValidationService(userRepository: userRepository))
-        let userViewController = AddUserViewController(viewModel: viewModel)
+        let addUserViewModel = AddUserViewModel(
+            userRepository: userRepository,
+            validationService: UserValidationService(userRepository: userRepository)
+        )
+        let addUserViewController = AddUserViewController(viewModel: addUserViewModel)
         
-        viewModel.success
+        addUserViewModel.success
             .observe(on: MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 guard let self else { return }
                 self.viewModel.fetchUsers()
-                    .subscribe(onError: { [weak self] error in
-                        guard let self else { return }
-                        showError(error)
-                    })
-                    .disposed(by: disposeBag)
             })
             .disposed(by: disposeBag)
         
-        navigationController?.pushViewController(userViewController, animated: true)
+        navigationController?.pushViewController(addUserViewController, animated: true)
     }
     
     @objc func handleRefresh() {
-        viewModel.fetchUsers()
-            .observe(on: MainScheduler.instance)
-            .subscribe(onCompleted: { [weak self] in
+        viewModel.fetchUsers { [weak self] in
+            DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
-            }, onError: { [weak self] error in
-                self?.refreshControl.endRefreshing()
-                self?.showError(error)
-            })
-            .disposed(by: disposeBag)
+            }
+        }
     }
     
     func confirmDeletion(at indexPath: IndexPath) {
