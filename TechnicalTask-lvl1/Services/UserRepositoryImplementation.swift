@@ -55,7 +55,7 @@ final class UserRepositoryImplementation: UserRepository {
         let localUsers = fetchUsers()
         let localUserEmails = Set(localUsers.map { $0.email })
         let validUsers = users.filter { isValidEmail($0.email) }
-        let newUsers = validUsers.filter { !localUserEmails.contains($0.email) }
+        let newUsers = validUsers.filter { !localUserEmails.contains($0.email.lowercased()) }
         newUsers.forEach { addUserFromNetwork($0) }
         
         saveContext(errorText: "Failed to update users")
