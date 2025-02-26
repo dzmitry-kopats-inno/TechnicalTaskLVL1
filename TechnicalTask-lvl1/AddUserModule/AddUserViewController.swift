@@ -133,9 +133,9 @@ private extension AddUserViewController {
         
         viewModel.error
             .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { [weak self] errorMessage in
+            .subscribe(onNext: { [weak self] error in
                 guard let self else { return }
-                showError(errorMessage)
+                showError(error)
             })
             .disposed(by: disposeBag)
         
