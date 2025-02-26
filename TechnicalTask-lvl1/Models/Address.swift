@@ -6,6 +6,6 @@
 //
 
 struct Address: Codable {
-    let city: String
+    let city: String?
     let street: String?
 }
