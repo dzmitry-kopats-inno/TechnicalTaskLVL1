@@ -11,10 +11,10 @@ import RxSwift
 protocol UserRepository {
     var errorPublisher: Observable<AppError> { get }
     
-    func fetchUsers() -> [UserModel]
-    func update(with users: [UserModel])
-    func addLocalUser(_ user: UserModel)
-    func deleteUser(_ user: UserModel)
+    func fetchUsers() -> [User]
+    func update(with users: [User])
+    func addLocalUser(_ user: User)
+    func deleteUser(_ user: User)
     func isValidEmail(_ email: String) -> Bool
 }
 
@@ -40,18 +40,18 @@ final class UserRepositoryImplementation: UserRepository {
             .disposed(by: disposeBag)
     }
     
-    func fetchUsers() -> [UserModel] {
+    func fetchUsers() -> [User] {
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         do {
             let users = try context.fetch(fetchRequest)
-            return users.map { UserModel(userEntity: $0) }
+            return users.map { User(userEntity: $0) }
         } catch {
             errorSubject.onNext(AppError(message: "Failed to fetch users: \(error.localizedDescription)"))
             return []
         }
     }
     
-    func update(with users: [UserModel]) {
+    func update(with users: [User]) {
         let localUsers = fetchUsers()
         let localUserEmails = Set(localUsers.map { $0.email })
         let validUsers = users.filter { isValidEmail($0.email) }
@@ -61,7 +61,7 @@ final class UserRepositoryImplementation: UserRepository {
         saveContext(errorText: "Failed to update users")
     }
     
-    func addLocalUser(_ user: UserModel) {
+    func addLocalUser(_ user: User) {
         guard isValidEmail(user.email) else {
             errorSubject.onNext(AppError(message: "Invalid email format: \(user.email)"))
             return
@@ -71,7 +71,7 @@ final class UserRepositoryImplementation: UserRepository {
         saveContext(errorText: "Failed to save user")
     }
     
-    func deleteUser(_ user: UserModel) {
+    func deleteUser(_ user: User) {
         let fetchRequest: NSFetchRequest<UserEntity> = UserEntity.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "email ==[c] %@", user.email)
         
@@ -94,11 +94,11 @@ final class UserRepositoryImplementation: UserRepository {
 }
 
 private extension UserRepositoryImplementation {
-    func addUserFromNetwork(_ user: UserModel) {
+    func addUserFromNetwork(_ user: User) {
         createUserEntity(user, isLocal: false)
     }
     
-    func createUserEntity(_ user: UserModel, isLocal: Bool) {
+    func createUserEntity(_ user: User, isLocal: Bool) {
         let newUser = UserEntity(context: context)
         newUser.name = user.name
         newUser.email = user.email.lowercased()

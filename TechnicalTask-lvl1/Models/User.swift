@@ -5,7 +5,7 @@
 //  Created by Dzmitry Kopats on 25/11/2024.
 //
 
-struct UserModel: Codable {
+struct User: Codable {
     let email: String
     let name: String
     let address: Address?

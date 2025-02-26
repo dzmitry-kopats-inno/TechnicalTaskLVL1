@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 
 protocol NetworkService {
-    func fetchUsers() -> Observable<[UserModel]>
+    func fetchUsers() -> Observable<[User]>
 }
 
 final class NetworkServiceImplementation: NetworkService {
@@ -22,7 +22,7 @@ final class NetworkServiceImplementation: NetworkService {
         self.requestExecutor = requestExecutor
     }
     
-    func fetchUsers() -> Observable<[UserModel]> {
+    func fetchUsers() -> Observable<[User]> {
         let request = requestBuilder.buildRequest(for: .users)
         return requestExecutor.execute(request: request)
     }

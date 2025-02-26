@@ -49,7 +49,7 @@ final class AddUserViewModel {
             try validationService.validateUserInput(name: name, email: email)
             
             let address = Address(city: city ?? "N/A", street: street)
-            let newUser = UserModel(email: email, name: name, address: address)
+            let newUser = User(email: email, name: name, address: address)
             
             userRepository.addLocalUser(newUser)
             

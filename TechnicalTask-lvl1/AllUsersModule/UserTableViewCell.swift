@@ -76,7 +76,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     }
     
     // MARK: - Methods
-    func configure(with user: UserModel) {
+    func configure(with user: User) {
         userNameLabel.text = user.name
         userEmailLabel.text = user.email
         

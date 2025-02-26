@@ -14,10 +14,10 @@ final class AllUsersViewModel {
     private let networkMonitorService: NetworkMonitorService
     private let userRepository: UserRepository
     private let disposeBag = DisposeBag()
-    private let usersSubject = BehaviorSubject<[UserModel]>(value: [])
+    private let usersSubject = BehaviorSubject<[User]>(value: [])
     private let errorSubject = PublishSubject<Error>()
     
-    var users: Observable<[UserModel]> {
+    var users: Observable<[User]> {
         usersSubject.asObservable()
     }
     

@@ -10,7 +10,7 @@
 		CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */; };
 		CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */; };
 		CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */; };
-		CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */; };
+		CE2A5AA42CF4D5D100CEDCE1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA32CF4D5D100CEDCE1 /* User.swift */; };
 		CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */; };
 		CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */; };
 		CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */; };
@@ -43,7 +43,7 @@
 /* Begin PBXFileReference section */
 		CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewController.swift; sourceTree = "<group>"; };
 		CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
-		CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		CE2A5AA32CF4D5D100CEDCE1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		CE2A5AA52CF4DF4E00CEDCE1 /* Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reusable.swift; sourceTree = "<group>"; };
 		CE2A5AA72CF4E1D400CEDCE1 /* AllUsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllUsersViewModel.swift; sourceTree = "<group>"; };
 		CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceImplementation.swift; sourceTree = "<group>"; };
@@ -152,7 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2A5AAB2CF4E56900CEDCE1 /* Address.swift */,
-				CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */,
+				CE2A5AA32CF4D5D100CEDCE1 /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 				CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */,
 				CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */,
 				CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */,
-				CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */,
+				CE2A5AA42CF4D5D100CEDCE1 /* User.swift in Sources */,
 				CE2A5AD12D08989700CEDCE1 /* ValidationService.swift in Sources */,
 				CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */,
 				CE2A5AA62CF4DF4E00CEDCE1 /* Reusable.swift in Sources */,
