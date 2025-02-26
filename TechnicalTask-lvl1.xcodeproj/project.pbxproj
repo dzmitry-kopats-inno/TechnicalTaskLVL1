@@ -37,6 +37,9 @@
 		CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9F09182CEF646D00CFA6B5 /* AddUserViewController.swift */; };
 		CE9F091E2CEF647100CFA6B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */; };
 		CE9F09212CEF647100CFA6B5 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CE9F09202CEF647100CFA6B5 /* Base */; };
+		CEBDE4DB2D6E39AB007A4317 /* DefaultRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DA2D6E39AB007A4317 /* DefaultRequestBuilder.swift */; };
+		CEBDE4DD2D6E39B5007A4317 /* URLSessionRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DC2D6E39B5007A4317 /* URLSessionRequestExecutor.swift */; };
+		CEBDE4DF2D6E39E2007A4317 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DE2D6E39E2007A4317 /* Endpoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +72,9 @@
 		CE9F091D2CEF647100CFA6B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE9F09202CEF647100CFA6B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9F09222CEF647100CFA6B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CEBDE4DA2D6E39AB007A4317 /* DefaultRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestBuilder.swift; sourceTree = "<group>"; };
+		CEBDE4DC2D6E39B5007A4317 /* URLSessionRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestExecutor.swift; sourceTree = "<group>"; };
+		CEBDE4DE2D6E39E2007A4317 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,7 +125,7 @@
 		CE2A5AC62D076EDD00CEDCE1 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
+				CEBDE4D92D6E3993007A4317 /* Network */,
 				CE2A5AB42CF6001900CEDCE1 /* UserRepositoryImplementation.swift */,
 				CE2A5ACE2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift */,
 				CE2A5AD02D08989700CEDCE1 /* ValidationService.swift */,
@@ -216,6 +222,17 @@
 			path = AddUserModule;
 			sourceTree = "<group>";
 		};
+		CEBDE4D92D6E3993007A4317 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CE2A5AA92CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift */,
+				CEBDE4DA2D6E39AB007A4317 /* DefaultRequestBuilder.swift */,
+				CEBDE4DC2D6E39B5007A4317 /* URLSessionRequestExecutor.swift */,
+				CEBDE4DE2D6E39E2007A4317 /* Endpoint.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,15 +314,18 @@
 				CE9F09192CEF646D00CFA6B5 /* AddUserViewController.swift in Sources */,
 				CE2A5AAE2CF4EED200CEDCE1 /* UIView+Extension.swift in Sources */,
 				CE2A5AB12CF5FE0100CEDCE1 /* UserModel.xcdatamodeld in Sources */,
+				CEBDE4DB2D6E39AB007A4317 /* DefaultRequestBuilder.swift in Sources */,
 				CE2A5AA82CF4E1D400CEDCE1 /* AllUsersViewModel.swift in Sources */,
 				CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */,
 				CE9F09152CEF646D00CFA6B5 /* AppDelegate.swift in Sources */,
 				CE2A5AB32CF5FEF600CEDCE1 /* CoreDataStack.swift in Sources */,
 				CE2A5AC22CF74D0D00CEDCE1 /* AddUserViewModel.swift in Sources */,
+				CEBDE4DD2D6E39B5007A4317 /* URLSessionRequestExecutor.swift in Sources */,
 				CE2A5ACA2D07747A00CEDCE1 /* UIViewController+Extension.swift in Sources */,
 				CE2A5B6F2D1ADB7E00CEDCE1 /* UserValidationService.swift in Sources */,
 				CE2A5AAC2CF4E56900CEDCE1 /* Address.swift in Sources */,
 				CE2A5AD32D10EEE100CEDCE1 /* TableViewHeaderView.swift in Sources */,
+				CEBDE4DF2D6E39E2007A4317 /* Endpoint.swift in Sources */,
 				CE2A5AAA2CF4E3CB00CEDCE1 /* NetworkServiceImplementation.swift in Sources */,
 				CE9F09172CEF646D00CFA6B5 /* SceneDelegate.swift in Sources */,
 				CE2A5B712D1F258400CEDCE1 /* CustomTextFieldViewBuilder.swift in Sources */,

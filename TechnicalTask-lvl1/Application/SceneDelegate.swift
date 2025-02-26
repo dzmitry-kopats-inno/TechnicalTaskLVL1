@@ -9,7 +9,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
-        let networkService = NetworkServiceImplementation(timeout: 3)
+        let networkService = NetworkServiceImplementation()
         let networkMonitorService = NetworkMonitorServiceImplementation()
         let userRepository = UserRepositoryImplementation()
         let allUsersViewModel = AllUsersViewModel(networkService: networkService,
