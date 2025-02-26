@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */; };
-		CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */; };
-		CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */; };
 		CE2A5A9F2CF4CDA500CEDCE1 /* AllUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5A9E2CF4CDA500CEDCE1 /* AllUsersViewController.swift */; };
 		CE2A5AA22CF4D4BB00CEDCE1 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA12CF4D4BB00CEDCE1 /* UserTableViewCell.swift */; };
 		CE2A5AA42CF4D5D100CEDCE1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2A5AA32CF4D5D100CEDCE1 /* UserModel.swift */; };
@@ -82,8 +80,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE2A5A9D2CF4CB7400CEDCE1 /* RxRelay in Frameworks */,
-				CE2A5A9B2CF4CB7400CEDCE1 /* RxCocoa-Dynamic in Frameworks */,
 				CE2A5A992CF4CB7400CEDCE1 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,8 +247,6 @@
 			name = "TechnicalTask-lvl1";
 			packageProductDependencies = (
 				CE2A5A982CF4CB7400CEDCE1 /* RxCocoa */,
-				CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */,
-				CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */,
 			);
 			productName = "Technical task - lvl1";
 			productReference = CE9F09112CEF646D00CFA6B5 /* TechnicalTask-lvl1.app */;
@@ -578,16 +572,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxCocoa;
-		};
-		CE2A5A9A2CF4CB7400CEDCE1 /* RxCocoa-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = "RxCocoa-Dynamic";
-		};
-		CE2A5A9C2CF4CB7400CEDCE1 /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CE2A5A932CF4CB7400CEDCE1 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxRelay;
 		};
 /* End XCSwiftPackageProductDependency section */
 
