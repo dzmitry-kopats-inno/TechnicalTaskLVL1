@@ -49,6 +49,28 @@ Create an iOS application that contains two screens:
 - **Third-Party Libraries:** You may use any third-party libraries as needed.
 - **Design Requirements:** No special design requirements, but the functionality and UI will be reviewed.
 
+## Installation & Setup
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dzmitry-kopats-inno/TechnicalTaskLVL1.git
+   cd TechnicalTaskLVL1
+   ```
+
+2. **Open the project in Xcode**
+   - Open `TechnicalTaskLVL1.xcodeproj` in Xcode.
+
+3. **Update Swift Package Manager dependencies**
+   - Open Xcode and go to **File** → **Packages** → **Resolve Package Versions**.
+   - Alternatively, resolve dependencies manually with:
+     ```bash
+     xcodebuild -resolvePackageDependencies
+     ```
+
+4. **Run the project**
+   - Select a simulator or a real device.
+   - Press **Cmd + R** to build and run the app.
+
 ## Submissions and Starting Point
 
 1. **Fork the Repository:**
