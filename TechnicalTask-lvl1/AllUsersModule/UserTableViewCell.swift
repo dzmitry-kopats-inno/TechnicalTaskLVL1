@@ -8,11 +8,6 @@
 import UIKit
 
 private enum Constants {
-    static let userNameFont: UIFont = .boldSystemFont(ofSize: 18)
-    static let userEmailFont: UIFont = .systemFont(ofSize: 14)
-    static let addressFont: UIFont = .boldSystemFont(ofSize: 14)
-    static let cityStreetFont: UIFont = .systemFont(ofSize: 14)
-    static let boldFont: UIFont = .boldSystemFont(ofSize: 18)
     static let commonInset: CGFloat = 8.0
 }
 
@@ -22,7 +17,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = Constants.userNameFont
+        label.font = .userNameFont
         label.text = "User Name"
         return label
     }()
@@ -30,7 +25,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     private let userEmailLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.userEmailFont
+        label.font = .userEmailFont
         label.text = "User email"
         return label
     }()
@@ -38,7 +33,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     private let addressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = Constants.addressFont
+        label.font = .addressFont
         label.text = "Address:"
         return label
     }()
@@ -47,7 +42,7 @@ final class UserTableViewCell: UITableViewCell, Reusable {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
-        label.font = Constants.cityStreetFont
+        label.font = .cityStreetFont
         label.text = "City name,\nstreet name"
         return label
     }()

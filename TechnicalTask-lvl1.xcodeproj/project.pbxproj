@@ -38,6 +38,7 @@
 		CEBDE4DB2D6E39AB007A4317 /* DefaultRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DA2D6E39AB007A4317 /* DefaultRequestBuilder.swift */; };
 		CEBDE4DD2D6E39B5007A4317 /* URLSessionRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DC2D6E39B5007A4317 /* URLSessionRequestExecutor.swift */; };
 		CEBDE4DF2D6E39E2007A4317 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4DE2D6E39E2007A4317 /* Endpoint.swift */; };
+		CEBDE4E62D6F920F007A4317 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBDE4E52D6F920F007A4317 /* UIFont+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		CEBDE4DA2D6E39AB007A4317 /* DefaultRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultRequestBuilder.swift; sourceTree = "<group>"; };
 		CEBDE4DC2D6E39B5007A4317 /* URLSessionRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionRequestExecutor.swift; sourceTree = "<group>"; };
 		CEBDE4DE2D6E39E2007A4317 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CEBDE4E52D6F920F007A4317 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				CE2A5AAD2CF4EED200CEDCE1 /* UIView+Extension.swift */,
 				CE2A5AC92D07747A00CEDCE1 /* UIViewController+Extension.swift */,
+				CEBDE4E52D6F920F007A4317 /* UIFont+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -326,6 +329,7 @@
 				CE2A5ACD2D07798400CEDCE1 /* AppError.swift in Sources */,
 				CE2A5ABF2CF6471600CEDCE1 /* UserEntity+CoreDataClass.swift in Sources */,
 				CE2A5AC02CF6471600CEDCE1 /* UserEntity+CoreDataProperties.swift in Sources */,
+				CEBDE4E62D6F920F007A4317 /* UIFont+Extension.swift in Sources */,
 				CE2A5AB52CF6001900CEDCE1 /* UserRepositoryImplementation.swift in Sources */,
 				CE2A5ACF2D077D7B00CEDCE1 /* NetworkMonitorServiceImplementation.swift in Sources */,
 				CE2A5AA42CF4D5D100CEDCE1 /* User.swift in Sources */,
