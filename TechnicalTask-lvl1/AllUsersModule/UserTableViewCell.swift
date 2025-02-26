@@ -71,16 +71,16 @@ final class UserTableViewCell: UITableViewCell, Reusable {
     }
     
     // MARK: - Methods
-    func configure(with user: User) {
-        userNameLabel.text = user.name
-        userEmailLabel.text = user.email
+    func configure(with personInfo: PersonInfo) {
+        userNameLabel.text = personInfo.name
+        userEmailLabel.text = personInfo.email
         
         var addressText = ""
-        if let city = user.address?.city, !city.isEmpty {
+        if let city = personInfo.address?.city, !city.isEmpty {
             addressText += city
         }
         
-        if let street = user.address?.street, !street.isEmpty {
+        if let street = personInfo.address?.street, !street.isEmpty {
             if !addressText.isEmpty {
                 addressText += ",\n"
             }

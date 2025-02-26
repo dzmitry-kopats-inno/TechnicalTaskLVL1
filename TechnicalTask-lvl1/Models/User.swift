@@ -5,7 +5,13 @@
 //  Created by Dzmitry Kopats on 25/11/2024.
 //
 
-struct User: Codable {
+protocol PersonInfo {
+    var name: String { get }
+    var email: String { get }
+    var address: Address? { get }
+}
+
+struct User: PersonInfo, Codable {
     let email: String
     let name: String
     let address: Address?
